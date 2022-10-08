@@ -5,19 +5,35 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "food_orders")
+
+@NamedStoredProcedureQueries({
+        @NamedStoredProcedureQuery(name = "deleteFoodOrderById", procedureName = "deleteFoodOrderById", parameters = {@StoredProcedureParameter(mode = ParameterMode.IN, name = "fo_id", type = Integer.class)}),
+        @NamedStoredProcedureQuery(name = "updateFoodOrderById", procedureName = "updateFoodOrderById", parameters = {@StoredProcedureParameter(mode = ParameterMode.IN,name = "fo_id",type=Integer.class), @StoredProcedureParameter(mode = ParameterMode.IN,name = "date",type= LocalDate.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "total_payment",type=Double.class)} ),
+        @NamedStoredProcedureQuery(name = "addFoodOrder", procedureName = "addFoodOrder", parameters = {@StoredProcedureParameter(mode = ParameterMode.IN,name = "date",type= LocalDate.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "cus_id",type=Integer.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "total_payment",type=Double.class)} )
+
+})
+
 public class FoodOrder {
     @Id
-    @Column(name = "fo_id", nullable = false)
+    @Column(name = "fo_id")
     private Integer id;
 
-    @Column(name = "date", nullable = false)
+    @Column(name = "date")
     private LocalDate date;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "cus_id", nullable = false)
-    private Customer cus;
+    public Integer getCus_id() {
+        return cus_id;
+    }
 
-    @Column(name = "total_payment", nullable = false)
+    public void setCus_id(Integer cus_id) {
+        this.cus_id = cus_id;
+    }
+
+    @Column(name = "cus_id")
+    private Integer cus_id;
+
+
+    @Column(name = "total_payment")
     private Double totalPayment;
 
     @Column(name = "is_deleted")
@@ -39,13 +55,9 @@ public class FoodOrder {
         this.date = date;
     }
 
-    public Customer getCus() {
-        return cus;
-    }
 
-    public void setCus(Customer cus) {
-        this.cus = cus;
-    }
+
+
 
     public Double getTotalPayment() {
         return totalPayment;
