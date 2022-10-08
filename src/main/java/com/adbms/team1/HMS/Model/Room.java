@@ -2,9 +2,17 @@ package com.adbms.team1.HMS.Model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "rooms")
+
+@NamedStoredProcedureQueries({
+        @NamedStoredProcedureQuery(name = "addRoom", procedureName = "addRoom", parameters = {@StoredProcedureParameter(mode = ParameterMode.IN,name = "room_name",type= String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "room_description",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "room_status",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "daily_rate",type=BigDecimal.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "room_qty",type=Integer.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "max_guest",type=Integer.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "room_image",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "room_category",type=Integer.class)} ),
+        @NamedStoredProcedureQuery(name = "deleteRoomById", procedureName = "deleteRoomById", parameters = {@StoredProcedureParameter(mode = ParameterMode.IN,name = "room_id",type=Integer.class)} ),
+        @NamedStoredProcedureQuery(name = "updateRoomById", procedureName = "updateRoomById",  parameters = {@StoredProcedureParameter(mode = ParameterMode.IN,name = "id",type=Integer.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "room_name",type= String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "room_description",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "room_status",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "daily_rate",type=BigDecimal.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "room_qty",type=Integer.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "max_guest",type=Integer.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "room_image",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "room_category",type=Integer.class)} ),
+
+})
 public class Room {
     @Id
     @Column(name = "room_id", nullable = false)
@@ -31,9 +39,8 @@ public class Room {
     @Column(name = "room_image", nullable = false, length = 50)
     private String roomImage;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "room_category", nullable = false)
-    private RoomCategory roomCategory;
+
+    private Integer roomCategory;
 
     @Column(name = "is_deleted", nullable = false)
     private Boolean isDeleted = false;
@@ -102,11 +109,11 @@ public class Room {
         this.roomImage = roomImage;
     }
 
-    public RoomCategory getRoomCategory() {
+    public Integer getRoomCategory() {
         return roomCategory;
     }
 
-    public void setRoomCategory(RoomCategory roomCategory) {
+    public void setRoomCategory(Integer roomCategory) {
         this.roomCategory = roomCategory;
     }
 
