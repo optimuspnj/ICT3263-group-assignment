@@ -61,7 +61,7 @@ public class BookingServicesImpl implements BookingServices {
         String msg;
         boolean status =  entityManager.createNamedStoredProcedureQuery("addBooking").setParameter("bdate",bookingData.getBookingDate()).setParameter("adate",bookingData.getArrivalDate()).setParameter("ddate",bookingData.getDepartureDate()).setParameter("amount",bookingData.getBookingAmount()).setParameter("cus",bookingData.getCusId()).execute();
         if (!status) {
-            msg = "Deleted";
+            msg = "Added";
         }
         else {
             msg = "Error";
