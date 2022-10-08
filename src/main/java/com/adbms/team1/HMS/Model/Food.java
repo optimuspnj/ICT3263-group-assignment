@@ -2,31 +2,49 @@ package com.adbms.team1.HMS.Model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "foods")
+
+@NamedStoredProcedureQueries({
+        @NamedStoredProcedureQuery(name = "deleteFoodById", procedureName = "deleteFoodById", parameters = {@StoredProcedureParameter(mode = ParameterMode.IN,name = "f_id",type=Integer.class)} ),
+        @NamedStoredProcedureQuery(name = "updateFoodById", procedureName = "updateFoodById", parameters = {@StoredProcedureParameter(mode = ParameterMode.IN,name = "id",type=Integer.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "fname",type= String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "descr",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "fprice",type=Double.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "fimage",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "fcategory",type=Integer.class)} ),
+        @NamedStoredProcedureQuery(name = "addFood", procedureName = "addFood", parameters = {@StoredProcedureParameter(mode = ParameterMode.IN,name = "fname",type= String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "descr",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "fprice",type=Double.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "fimage",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "fcategory",type=Integer.class)} )
+})
+
 public class Food {
     @Id
-    @Column(name = "food_id", nullable = false)
+    @Column(name = "food_id")
     private Integer id;
 
-    @Column(name = "food_name", nullable = false, length = 50)
+    @Column(name = "food_name", length = 50)
     private String foodName;
 
-    @Column(name = "description", nullable = false, length = 2000)
+    @Column(name = "description", length = 2000)
     private String description;
 
-    @Column(name = "price", nullable = false, precision = 10)
-    private BigDecimal price;
+    @Column(name = "price", precision = 10)
+    private Double price;
 
-    @Column(name = "image", nullable = false, length = 50)
+    @Column(name = "image", length = 50)
     private String image;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "food_category", nullable = false)
-    private FoodCategory foodCategory;
+    @Column(name = "food_category")
+    private Integer food_category;
 
-    @Column(name = "is_deleted", nullable = false)
+    public Integer getFood_category() {
+        return food_category;
+    }
+
+    public void setFood_category(Integer food_category) {
+        this.food_category = food_category;
+    }
+//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+//    @JoinColumn(name = "food_category", nullable = false)
+//    private FoodCategory foodCategory;
+
+    @Column(name = "is_deleted")
     private Boolean isDeleted = false;
 
     public Integer getId() {
@@ -53,11 +71,11 @@ public class Food {
         this.description = description;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -69,13 +87,13 @@ public class Food {
         this.image = image;
     }
 
-    public FoodCategory getFoodCategory() {
-        return foodCategory;
-    }
+//    public FoodCategory getFoodCategory() {
+//        return foodCategory;
+//    }
 
-    public void setFoodCategory(FoodCategory foodCategory) {
-        this.foodCategory = foodCategory;
-    }
+//    public void setFoodCategory(FoodCategory foodCategory) {
+//        this.foodCategory = foodCategory;
+//    }
 
     public Boolean getIsDeleted() {
         return isDeleted;
