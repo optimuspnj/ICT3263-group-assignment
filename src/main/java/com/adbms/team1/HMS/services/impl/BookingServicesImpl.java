@@ -4,7 +4,6 @@ import com.adbms.team1.HMS.Model.Booking;
 import com.adbms.team1.HMS.repositories.BookingRepository;
 import com.adbms.team1.HMS.services.BookingServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -21,13 +20,14 @@ public class BookingServicesImpl implements BookingServices {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public List<Booking> getAllBookings(){
-        return entityManager.createNamedStoredProcedureQuery("getAllBookings").getResultList();
+    @Override
+    public List<Booking> getAllBookings() {
+        return bookingRepository.getAllBookings();
     }
 
     @Override
     public List<Booking> getBookingById(Integer id) {
-        return (List<Booking>) entityManager.createNamedStoredProcedureQuery("getBookingById").setParameter("booking_id",id).getResultList();
+        return bookingRepository.findBookingByDeletedFalse(id);
     }
 
     @Override
@@ -44,16 +44,28 @@ public class BookingServicesImpl implements BookingServices {
     }
 
     @Override
-    public String addBooking(Booking bookingData) {
+    public String updateBooking(Integer id, Booking bookingData) {
         String msg;
-        //Customer ID hardcoded
-        boolean status =  entityManager.createNamedStoredProcedureQuery("deleteBookingById").setParameter("bdate",bookingData.getBookingDate()).setParameter("adate",bookingData.getArrivalDate()).setParameter("ddate",bookingData.getDepartureDate()).setParameter("amount",bookingData.getBookingAmount()).setParameter("cus",2).execute();
-        if (status) {
-            msg = "Error";
+        boolean status =  entityManager.createNamedStoredProcedureQuery("updateBookingById").setParameter("id",id).setParameter("bdate",bookingData.getBookingDate()).setParameter("adate",bookingData.getArrivalDate()).setParameter("ddate",bookingData.getDepartureDate()).setParameter("amount",bookingData.getBookingAmount()).execute();
+        if (!status) {
+            msg = "Updated";
         }
         else {
-            msg = "Deleted";
+            msg = "Error";
         }
         return msg;
     }
+
+    @Override
+    public String addBooking(Booking bookingData) {
+        String msg;
+        boolean status =  entityManager.createNamedStoredProcedureQuery("addBooking").setParameter("bdate",bookingData.getBookingDate()).setParameter("adate",bookingData.getArrivalDate()).setParameter("ddate",bookingData.getDepartureDate()).setParameter("amount",bookingData.getBookingAmount()).setParameter("cus",bookingData.getCusId()).execute();
+        if (!status) {
+            msg = "Deleted";
+        }
+        else {
+            msg = "Error";
+        }
+        return msg;
+   }
 }
