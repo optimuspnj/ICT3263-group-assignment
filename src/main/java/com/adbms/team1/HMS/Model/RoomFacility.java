@@ -4,6 +4,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "room_facilities")
+
+
 public class RoomFacility {
     @Id
     @Column(name = "room_facility_id", nullable = false)

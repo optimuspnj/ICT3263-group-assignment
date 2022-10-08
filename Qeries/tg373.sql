@@ -105,6 +105,118 @@ DELIMITER ;
 
 
 
+-- Get All Room Categories Procedure
+
+
+USE `hoteldb`;
+DROP procedure IF EXISTS `getAllRoomCategories`;
+
+DELIMITER $$
+USE `hoteldb`$$
+CREATE PROCEDURE `getAllRoomCategories`()
+BEGIN
+	SELECT * FROM hoteldb.room_category;
+END$$
+
+DELIMITER ;
+
+
+
+
+
+-- Add  Room Category Procedure
+
+USE `hoteldb`;
+DROP procedure IF EXISTS `addRoomCategory`;
+
+DELIMITER $$
+USE `hoteldb`$$
+CREATE PROCEDURE `addRoomCategory`(
+IN cat_name VARCHAR(50),
+IN cat_image VARCHAR(50)
+
+)
+BEGIN
+	INSERT INTO `hoteldb`.`room_category` (`cat_name`, `cat_image`) VALUES (cat_name, cat_image);
+END$$
+
+DELIMITER ;
+
+
+
+
+-- Delete Room Category By ID Procedure
+
+USE `hoteldb`;
+DROP procedure IF EXISTS `hoteldb`.`deleteRoomCategoryById`;
+;
+
+DELIMITER $$
+USE `hoteldb`$$
+CREATE DEFINER=`webuser`@`%` PROCEDURE `deleteRoomCategoryById`(
+IN id INT
+)
+BEGIN
+	DELETE FROM `hoteldb`.`room_category` WHERE (`cat_id` = id);
+END$$
+
+DELIMITER ;
+;
+
+
+
+-- Get All Room Facilities
+
+USE `hoteldb`;
+DROP procedure IF EXISTS `getAllRoomFacilities`;
+
+DELIMITER $$
+USE `hoteldb`$$
+CREATE PROCEDURE `getAllRoomFacilities`()
+BEGIN
+	SELECT * FROM hoteldb.facilities;
+END$$
+
+DELIMITER ;
+
+
+
+
+-- Add Room Facility
+
+USE `hoteldb`;
+DROP procedure IF EXISTS `addRoomFacility`;
+
+DELIMITER $$
+USE `hoteldb`$$
+CREATE PROCEDURE `addRoomFacility`(
+IN fac_name VARCHAR(50),
+IN image VARCHAR(50)
+
+)
+BEGIN
+	INSERT INTO `hoteldb`.`facilities` (`fac_name`, `image`) VALUES (fac_name, image);
+END$$
+
+DELIMITER ;
+
+
+
+
+-- Delete Room Facility By ID
+
+USE `hoteldb`;
+DROP procedure IF EXISTS `deleteRoomFacilityById`;
+
+DELIMITER $$
+USE `hoteldb`$$
+CREATE PROCEDURE `deleteRoomFacilityById`(IN id INT)
+BEGIN
+	UPDATE `hoteldb`.`facilities` SET `is_deleted` = '1' WHERE (`fac_id` = id);
+END$$
+
+DELIMITER ;
+
 
 
 
