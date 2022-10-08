@@ -82,3 +82,49 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+-- FOOD CATEGORY module
+-- GET ALL FOOD CATEGORIES
+
+USE `hoteldb`;
+DROP procedure IF EXISTS `getAllFoodCategory`;
+
+DELIMITER $$
+USE `hoteldb`$$
+CREATE PROCEDURE `getAllFoodCategory` ()
+BEGIN
+	SELECT * FROM hoteldb.food_category WHERE hoteldb.food_category.is_deleted = 0;
+END$$
+
+DELIMITER ;
+
+-- ADD FOOD CATEGORY
+
+USE `hoteldb`;
+DROP procedure IF EXISTS `addFoodCategory`;
+
+DELIMITER $$
+USE `hoteldb`$$
+CREATE PROCEDURE `addFoodCategory` (
+IN f_category varchar(50)
+)
+BEGIN
+	INSERT INTO `food_category` (`fc_name`) 
+	VALUES (f_category);
+END$$
+
+DELIMITER ;
+
+-- DELETE FOOD CATEGORY
+
+USE `hoteldb`;
+DROP procedure IF EXISTS `deleteFoodCategoryById`;
+
+DELIMITER $$
+USE `hoteldb`$$
+CREATE PROCEDURE `deleteFoodCategoryById` (IN id INT)
+BEGIN
+	UPDATE `hoteldb`.`food_category` SET `is_deleted` = '1' WHERE (`fc_id` = id);
+END$$
+
+DELIMITER ;
