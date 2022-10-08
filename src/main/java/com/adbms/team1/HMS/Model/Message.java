@@ -1,12 +1,16 @@
 package com.adbms.team1.HMS.Model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "messages")
+
+@NamedStoredProcedureQueries({
+        @NamedStoredProcedureQuery(name = "addMessage", procedureName = "addMessage", parameters = {@StoredProcedureParameter(mode = ParameterMode.IN,name = "name",type= String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "email",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "phone",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "title",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "message",type=String.class)} ),
+        @NamedStoredProcedureQuery(name = "deleteMessageById", procedureName = "deleteMessageById", parameters = {@StoredProcedureParameter(mode = ParameterMode.IN,name = "id",type=Integer.class)} )
+})
+
 public class Message {
     @Id
     @Column(name = "msg_id", nullable = false)
