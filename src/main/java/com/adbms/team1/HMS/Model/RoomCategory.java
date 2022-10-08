@@ -1,12 +1,16 @@
 package com.adbms.team1.HMS.Model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "room_category")
+
+@NamedStoredProcedureQueries({
+        @NamedStoredProcedureQuery(name = "addRoomCategory", procedureName = "addRoomCategory", parameters = {@StoredProcedureParameter(mode = ParameterMode.IN,name = "cat_name",type= String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "cat_image",type=String.class)} ),
+        @NamedStoredProcedureQuery(name = "deleteRoomCategoryById", procedureName = "deleteRoomCategoryById", parameters = {@StoredProcedureParameter(mode = ParameterMode.IN,name = "id",type=Integer.class)} )
+})
+
+
 public class RoomCategory {
     @Id
     @Column(name = "cat_id", nullable = false)
