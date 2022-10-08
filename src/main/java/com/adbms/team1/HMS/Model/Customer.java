@@ -1,12 +1,17 @@
 package com.adbms.team1.HMS.Model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "customers")
+
+@NamedStoredProcedureQueries({
+        @NamedStoredProcedureQuery(name = "deleteCustomerById", procedureName = "deleteCustomerById", parameters = {@StoredProcedureParameter(mode = ParameterMode.IN, name = "cus_id", type = Integer.class)}),
+        @NamedStoredProcedureQuery(name = "updateCustomerById", procedureName = "updateCustomerById", parameters = {@StoredProcedureParameter(mode = ParameterMode.IN,name = "cus_id",type=Integer.class), @StoredProcedureParameter(mode = ParameterMode.IN,name = "name",type= String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "email",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "address",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "nic",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "phone",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "password",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "profile",type=String.class)} ),
+        @NamedStoredProcedureQuery(name = "addCustomer", procedureName = "addCustomer", parameters = {@StoredProcedureParameter(mode = ParameterMode.IN,name = "name",type= String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "email",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "address",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "nic",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "phone",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "password",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "profile",type=String.class)} )
+})
+
 public class Customer {
     @Id
     @Column(name = "cus_id", nullable = false)
