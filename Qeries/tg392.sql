@@ -1,6 +1,4 @@
-use hoteldb;
-
-SELECT * FROM hoteldb.bookings;
+-- GET ALL BOOKINGS
 
 USE `hoteldb`;
 DROP procedure IF EXISTS `getAllBookings`;
@@ -14,6 +12,8 @@ END$$
 
 DELIMITER ;
 
+-- GET BOOKING BY ID
+
 USE `hoteldb`;
 DROP procedure IF EXISTS `getBookingById`;
 
@@ -26,6 +26,8 @@ END$$
 
 DELIMITER ;
 
+-- DELETE BOOKING BY ID
+
 USE `hoteldb`;
 DROP procedure IF EXISTS `deleteBookingById`;
 
@@ -37,6 +39,8 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+-- ADD NEW BOOKING
 
 USE `hoteldb`;
 DROP procedure IF EXISTS `addBooking`;
@@ -56,3 +60,24 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+-- UPDATE BOOKING BY ID
+
+USE `hoteldb`;
+DROP procedure IF EXISTS `updateBookingById`;
+
+DELIMITER $$
+USE `hoteldb`$$
+CREATE PROCEDURE `updateBookingById` (
+IN id INT,
+IN bdate DATE,
+IN adate DATE,
+IN ddate DATE,
+IN amount DOUBLE
+)
+BEGIN
+	UPDATE `hoteldb`.`bookings` SET `booking_date` = bdate, `arrival_date` = adate, `departure_date` = ddate, `booking_amount` = amount WHERE (`booking_id` = id);
+END$$
+
+DELIMITER ;
+

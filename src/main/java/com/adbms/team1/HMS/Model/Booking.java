@@ -2,7 +2,6 @@ package com.adbms.team1.HMS.Model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name = "bookings")
@@ -11,31 +10,40 @@ import java.util.Date;
         @NamedStoredProcedureQuery(name = "getAllBookings",procedureName = "getAllBookings"),
         @NamedStoredProcedureQuery(name = "getBookingById", procedureName = "getBookingById", parameters = {@StoredProcedureParameter(mode = ParameterMode.IN,name = "booking_id",type=Integer.class)} ),
         @NamedStoredProcedureQuery(name = "deleteBookingById", procedureName = "deleteBookingById", parameters = {@StoredProcedureParameter(mode = ParameterMode.IN,name = "booking_id",type=Integer.class)} ),
-        @NamedStoredProcedureQuery(name = "addBooking", procedureName = "addBooking", parameters = {@StoredProcedureParameter(mode = ParameterMode.IN,name = "bdate",type= Date.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "adate",type=Date.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "ddate",type=Date.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "amount",type=Double.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "cus",type=Integer.class)} )
+        @NamedStoredProcedureQuery(name = "updateBookingById", procedureName = "updateBookingById", parameters = {@StoredProcedureParameter(mode = ParameterMode.IN,name = "id",type=Integer.class), @StoredProcedureParameter(mode = ParameterMode.IN,name = "bdate",type= LocalDate.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "adate",type=LocalDate.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "ddate",type=LocalDate.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "amount",type=Double.class)} ),
+        @NamedStoredProcedureQuery(name = "addBooking", procedureName = "addBooking", parameters = {@StoredProcedureParameter(mode = ParameterMode.IN,name = "bdate",type= LocalDate.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "adate",type=LocalDate.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "ddate",type=LocalDate.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "amount",type=Double.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "cus",type=Integer.class)} )
 })
 
 public class Booking {
     @Id
-    @Column(name = "booking_id", nullable = false)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "booking_id")
     private Integer id;
 
-    @Column(name = "booking_date", nullable = false)
+    @Column(name = "booking_date")
     private LocalDate bookingDate;
 
-    @Column(name = "arrival_date", nullable = false)
+    @Column(name = "arrival_date")
     private LocalDate arrivalDate;
 
-    @Column(name = "departure_date", nullable = false)
+    @Column(name = "departure_date")
     private LocalDate departureDate;
 
-    @Column(name = "booking_amount", nullable = false)
+    @Column(name = "booking_amount")
     private Double bookingAmount;
 
-//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "cus_id", nullable = false)
-//    private Customer cus;
+    public Integer getCusId() {
+        return cusId;
+    }
 
-    @Column(name = "is_deleted", nullable = false)
+    public void setCusId(Integer cusId) {
+        this.cusId = cusId;
+    }
+
+    @Column(name = "cus_id")
+    private Integer cusId;
+
+    @Column(name = "is_deleted")
     private Boolean isDeleted = false;
 
     public Integer getId() {
@@ -78,14 +86,6 @@ public class Booking {
         this.bookingAmount = bookingAmount;
     }
 
-//    public Customer getCus() {
-//        return cus;
-//    }
-//
-//    public void setCus(Customer cus) {
-//        this.cus = cus;
-//    }
-
     public Boolean getIsDeleted() {
         return isDeleted;
     }
@@ -93,5 +93,4 @@ public class Booking {
     public void setIsDeleted(Boolean isDeleted) {
         this.isDeleted = isDeleted;
     }
-
 }

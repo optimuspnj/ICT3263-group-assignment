@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/booking")
+@RequestMapping("/bookings")
 public class BookingController {
     @Autowired
     private BookingServices bookingServices;
@@ -18,9 +18,14 @@ public class BookingController {
         return bookingServices.getAllBookings();
     }
 
-    @GetMapping("/id/{id}")
+    @PostMapping("/add")
+    public String addBooking(@RequestBody Booking bookingData) {
+        return bookingServices.addBooking(bookingData);
+    }
+
+    @GetMapping("/booking/{id}")
     public List<Booking> getBookingById(@PathVariable Integer id) {
-        return (List<Booking>) bookingServices.getBookingById(id);
+        return bookingServices.getBookingById(id);
     }
 
     @PutMapping("/delete/{id}")
@@ -28,8 +33,8 @@ public class BookingController {
         return bookingServices.deleteBookingById(id);
     }
 
-    @PostMapping("/new")
-    public String addBooking(@RequestBody Booking bookingData) {
-        return bookingServices.addBooking(bookingData);
+    @PutMapping("/update/{id}")
+    public String updateBookingById(@PathVariable Integer id, @RequestBody Booking bookingData) {
+        return bookingServices.updateBooking(id,bookingData);
     }
 }
