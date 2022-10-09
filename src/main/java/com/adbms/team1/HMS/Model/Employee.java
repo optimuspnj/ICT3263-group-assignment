@@ -1,12 +1,16 @@
 package com.adbms.team1.HMS.Model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "employees")
+
+@NamedStoredProcedureQueries({
+        @NamedStoredProcedureQuery(name = "deleteEmployeeById", procedureName = "deleteEmployeeById", parameters = {@StoredProcedureParameter(mode = ParameterMode.IN, name = "emp_id", type = Integer.class)}),
+        @NamedStoredProcedureQuery(name = "updateEmployeeById", procedureName = "updateEmployeeById", parameters = {@StoredProcedureParameter(mode = ParameterMode.IN,name = "emp_id",type=Integer.class), @StoredProcedureParameter(mode = ParameterMode.IN,name = "name",type= String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "phone",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "email",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "type",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "password",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "profile",type=String.class)} ),
+        @NamedStoredProcedureQuery(name = "addEmployee", procedureName = "addEmployee", parameters = {@StoredProcedureParameter(mode = ParameterMode.IN,name = "name",type= String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "phone",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "email",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "type",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "password",type=String.class),@StoredProcedureParameter(mode = ParameterMode.IN,name = "profile",type=String.class)} )
+})
+
 public class Employee {
     @Id
     @Column(name = "emp_id", nullable = false)
