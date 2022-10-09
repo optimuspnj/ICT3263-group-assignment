@@ -514,7 +514,11 @@
       $(document).ready(function () {
         var table = $("#datatable-buttons").DataTable();
 
-        $.ajax({
+        function getAllRoomCategory(){
+          table
+          .clear()
+          .draw();
+          $.ajax({
           url: "http://localhost:8080/rooms/category/all",
           method: "get",
           success: function (data) {
@@ -526,12 +530,33 @@
                   value.catName,
                   value.catImage,
                   value.id,
-                  value.id,
+                  `<a href='edit-bookings.html' class='btn btn-primary mr-1 text-white' did=${value.id}>Edit</a><button class='btn btn-danger delete' did=${value.id}>Delete</button>`,
                 ])
                 .draw();
             });
           },
         });
+
+        }
+        getAllRoomCategory();
+
+        $(document).on("click", ".delete", function () {
+          var id = $(this).attr('did');
+
+
+
+
+
+          $.ajax({
+          url: `http://localhost:8080/rooms/category/delete/${id}`,
+          method: "delete",
+          success: function (data) {
+            getAllRoomCategory();
+          },
+        });
+        });
+
+
       });
     </script>
   </body>

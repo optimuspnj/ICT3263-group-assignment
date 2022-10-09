@@ -399,7 +399,11 @@
       $(document).ready(function () {
         var table = $("#datatable-buttons").DataTable();
 
-        $.ajax({
+        function getAllCustomer(){
+          table
+          .clear()
+          .draw();
+          $.ajax({
           url: "http://localhost:8080/customers/all",
           method: "get",
           success: function (data) {
@@ -413,12 +417,33 @@
                   value.address,
                   value.phone,
                   value.profilePic,
-                  value.id,
+                  `<a href='edit-bookings.html' class='btn btn-primary mr-1 text-white' did=${value.id}>Edit</a><button class='btn btn-danger delete' did=${value.id}>Delete</button>`,
                 ])
                 .draw();
             });
           },
         });
+
+        }
+        getAllCustomer();
+
+        $(document).on("click", ".delete", function () {
+          var id = $(this).attr('did');
+
+
+
+
+
+          $.ajax({
+          url: `http://localhost:8080/customers/delete/${id}`,
+          method: "put",
+          success: function (data) {
+            getAllCustomer();
+          },
+        });
+        });
+
+    
       });
     </script>
   </body>
