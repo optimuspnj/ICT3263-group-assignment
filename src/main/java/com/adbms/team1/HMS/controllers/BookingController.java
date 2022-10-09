@@ -31,6 +31,7 @@ public class BookingController {
         return bookingServices.getBookingById(id);
     }
 
+    @CrossOrigin(origins = "*", maxAge = 3600)
     @PutMapping("/delete/{id}")
     public String deleteBookingById(@PathVariable Integer id) {
         return bookingServices.deleteBookingById(id);
