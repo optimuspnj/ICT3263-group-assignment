@@ -345,20 +345,7 @@
                       </tr>
                     </thead>
 
-                    <tbody>
-                      <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
-                        <td>
-                          <a class="btn btn-primary mr-1" href="">View</a
-                          ><a class="btn btn-danger" href="">Delete</a>
-                        </td>
-                      </tr>
-                    </tbody>
+                    <tbody></tbody>
                   </table>
                 </div>
               </div>
@@ -409,5 +396,31 @@
 
     <!-- App js -->
     <script src="assets/js/app.js"></script>
+    <script>
+      $(document).ready(function () {
+        var table = $("#datatable-buttons").DataTable();
+
+        $.ajax({
+          url: "http://localhost:8080/bookings/all",
+          method: "get",
+          success: function (data) {
+            $.each(data, function (key, value) {
+              console.log(value);
+              table.row
+                .add([
+                  value.id,
+                  value.bookingDate,
+                  value.arrivalDate,
+                  value.departureDate,
+                  value.cusId,
+                  value.bookingAmount,
+                  value.id,
+                ])
+                .draw();
+            });
+          },
+        });
+      });
+    </script>
   </body>
 </html>
