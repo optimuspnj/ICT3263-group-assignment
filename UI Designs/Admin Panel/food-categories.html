@@ -2,11 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Room Categories - Royal Grand Hotel</title>
+    <title>Food Categories - Royal Grand Hotel</title>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
+    <meta
+      content="Premium Multipurpose Admin & Dashboard Template"
+      name="description"
+    />
+    <meta content="" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- App favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.ico" />
@@ -361,11 +367,11 @@
                       <a href="javascript:void(0);">Rooms</a>
                     </li>
                     <li class="breadcrumb-item">
-                      <a href="javascript:void(0);">Room categories</a>
+                      <a href="javascript:void(0);">All Categories</a>
                     </li>
                   </ol>
                 </div>
-                <h4 class="page-title">Room categories</h4>
+                <h4 class="page-title">All Categories</h4>
               </div>
               <!--end page-title-box-->
             </div>
@@ -388,10 +394,8 @@
                   >
                     <thead>
                       <tr>
-                        <th>Category Id</th>
+                        <th>Category ID</th>
                         <th>Category Name</th>
-                        <th>Facilities</th>
-                        <th>Category Image</th>
                         <th>Actions</th>
                       </tr>
                     </thead>
@@ -403,6 +407,7 @@
             </div>
             <!-- end col -->
           </div>
+          <!-- end row -->
           <!-- end row -->
           <h4 class="page-title">Add Category</h4>
 
@@ -463,10 +468,8 @@
             </div>
             <!-- end col -->
           </div>
-          <!-- end row -->
         </div>
         <!-- container -->
-
         <footer class="footer text-center text-sm-left">
           &copy; 2022 Royal Grand Hotel
           <span class="text-muted d-none d-sm-inline-block float-right"
@@ -515,20 +518,12 @@
         var table = $("#datatable-buttons").DataTable();
 
         $.ajax({
-          url: "http://localhost:8080/rooms/category/all",
+          url: "http://localhost:8080/foods/category/all",
           method: "get",
           success: function (data) {
             $.each(data, function (key, value) {
               console.log(value);
-              table.row
-                .add([
-                  value.id,
-                  value.catName,
-                  value.catImage,
-                  value.id,
-                  value.id,
-                ])
-                .draw();
+              table.row.add([value.id, value.fcName, value.id]).draw();
             });
           },
         });

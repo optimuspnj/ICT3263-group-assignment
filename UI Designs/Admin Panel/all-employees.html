@@ -2,11 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Room Categories - Royal Grand Hotel</title>
+    <title>All Employees - Royal Grand Hotel</title>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
+    <meta
+      content="Premium Multipurpose Admin & Dashboard Template"
+      name="description"
+    />
+    <meta content="" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- App favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.ico" />
@@ -28,65 +34,6 @@
       rel="stylesheet"
       type="text/css"
     />
-
-    <!-- App css -->
-    <link
-      href="assets/css/bootstrap.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link href="assets/css/jquery-ui.min.css" rel="stylesheet" />
-    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-    <link
-      href="assets/css/metisMenu.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
-    <link
-      href="plugins/select2/select2.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <!-- Plugins css -->
-    <link href="plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
-    <link
-      href="plugins/select2/select2.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link
-      href="plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link
-      href="plugins/timepicker/bootstrap-material-datetimepicker.css"
-      rel="stylesheet"
-    />
-    <link
-      href="plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css"
-      rel="stylesheet"
-    />
-
-    <!-- App css -->
-    <link
-      href="assets/css/bootstrap.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link href="assets/css/jquery-ui.min.css" rel="stylesheet" />
-    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-    <link
-      href="assets/css/metisMenu.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico" />
-
-    <link href="plugins/dropify/css/dropify.min.css" rel="stylesheet" />
 
     <!-- App css -->
     <link
@@ -361,11 +308,11 @@
                       <a href="javascript:void(0);">Rooms</a>
                     </li>
                     <li class="breadcrumb-item">
-                      <a href="javascript:void(0);">Room categories</a>
+                      <a href="javascript:void(0);">All Rooms</a>
                     </li>
                   </ol>
                 </div>
-                <h4 class="page-title">Room categories</h4>
+                <h4 class="page-title">All Rooms</h4>
               </div>
               <!--end page-title-box-->
             </div>
@@ -388,76 +335,31 @@
                   >
                     <thead>
                       <tr>
-                        <th>Category Id</th>
-                        <th>Category Name</th>
-                        <th>Facilities</th>
-                        <th>Category Image</th>
+                        <th>Emp ID</th>
+                        <th>Emp Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Type</th>
+                        <th>Profile Photo</th>
                         <th>Actions</th>
                       </tr>
                     </thead>
 
-                    <tbody></tbody>
+                    <tbody>
+                      <tr>
+                        <td>Tiger Nixon</td>
+                        <td>System Architect</td>
+                        <td>Edinburgh</td>
+                        <td>61</td>
+                        <td>2011/04/25</td>
+                        <td>$320,800</td>
+                        <td>
+                          <a class="btn btn-primary mr-1" href="">View</a
+                          ><a class="btn btn-danger" href="">Delete</a>
+                        </td>
+                      </tr>
+                    </tbody>
                   </table>
-                </div>
-              </div>
-            </div>
-            <!-- end col -->
-          </div>
-          <!-- end row -->
-          <h4 class="page-title">Add Category</h4>
-
-          <div class="row">
-            <div class="col-12">
-              <div class="card">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-lg-12">
-                      <div class="form-group row">
-                        <label
-                          for="example-text-input"
-                          class="col-sm-2 col-form-label text-right"
-                          >Category Name</label
-                        >
-                        <div class="col-sm-10">
-                          <input
-                            class="form-control"
-                            type="text"
-                            id=""
-                            name="cat_name"
-                            placeholder="Enter category name"
-                          />
-                        </div>
-                      </div>
-
-                      <div class="form-group row">
-                        <label
-                          for="example-text-input"
-                          class="col-sm-2 col-form-label text-right"
-                          >category Image</label
-                        >
-                        <div class="col-sm-10">
-                          <div class="form-group row">
-                            <div class="col-sm-10">
-                              <input
-                                type="file"
-                                id="input-file-now"
-                                class="dropify"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <div class="col-sm-12">
-                          <input
-                            class="btn btn-primary w-100"
-                            type="submit"
-                            value="Submit"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -466,7 +368,6 @@
           <!-- end row -->
         </div>
         <!-- container -->
-
         <footer class="footer text-center text-sm-left">
           &copy; 2022 Royal Grand Hotel
           <span class="text-muted d-none d-sm-inline-block float-right"
@@ -479,6 +380,7 @@
     </div>
     <!-- end page-wrapper -->
 
+    <!-- jQuery  -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery-ui.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
@@ -504,35 +406,7 @@
     <script src="plugins/datatables/responsive.bootstrap4.min.js"></script>
     <script src="assets/pages/jquery.datatable.init.js"></script>
 
-    <script src="plugins/dropify/js/dropify.min.js"></script>
-    <script src="assets/pages/jquery.form-upload.init.js"></script>
-
     <!-- App js -->
     <script src="assets/js/app.js"></script>
-
-    <script>
-      $(document).ready(function () {
-        var table = $("#datatable-buttons").DataTable();
-
-        $.ajax({
-          url: "http://localhost:8080/rooms/category/all",
-          method: "get",
-          success: function (data) {
-            $.each(data, function (key, value) {
-              console.log(value);
-              table.row
-                .add([
-                  value.id,
-                  value.catName,
-                  value.catImage,
-                  value.id,
-                  value.id,
-                ])
-                .draw();
-            });
-          },
-        });
-      });
-    </script>
   </body>
 </html>

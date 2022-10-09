@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/rooms")
 public class RoomsController {
@@ -15,6 +18,7 @@ public class RoomsController {
     @Autowired
     RoomServices roomServices;
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping("/all")
     public List<Room> getAllRooms() {
         return roomServices.getAllRooms();

@@ -49,7 +49,10 @@
       type="text/css"
     />
     <!-- Plugins css -->
-    <link href="plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <link
+      href="plugins/daterangepicker/daterangepicker.css"
+      rel="stylesheet"
+    />
     <link
       href="plugins/select2/select2.min.css"
       rel="stylesheet"
@@ -358,14 +361,14 @@
                 <div class="float-right">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                      <a href="javascript:void(0);">Rooms</a>
+                      <a href="javascript:void(0);">Foods</a>
                     </li>
                     <li class="breadcrumb-item">
-                      <a href="javascript:void(0);">Room categories</a>
+                      <a href="javascript:void(0);">New Order</a>
                     </li>
                   </ol>
                 </div>
-                <h4 class="page-title">Room categories</h4>
+                <h4 class="page-title">New Order</h4>
               </div>
               <!--end page-title-box-->
             </div>
@@ -377,54 +380,61 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
-                  <table
-                    id="datatable-buttons"
-                    class="table table-striped table-bordered dt-responsive nowrap"
-                    style="
-                      border-collapse: collapse;
-                      border-spacing: 0;
-                      width: 100%;
-                    "
-                  >
-                    <thead>
-                      <tr>
-                        <th>Category Id</th>
-                        <th>Category Name</th>
-                        <th>Facilities</th>
-                        <th>Category Image</th>
-                        <th>Actions</th>
-                      </tr>
-                    </thead>
-
-                    <tbody></tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-            <!-- end col -->
-          </div>
-          <!-- end row -->
-          <h4 class="page-title">Add Category</h4>
-
-          <div class="row">
-            <div class="col-12">
-              <div class="card">
-                <div class="card-body">
                   <div class="row">
                     <div class="col-lg-12">
+           
+            
                       <div class="form-group row">
                         <label
                           for="example-text-input"
                           class="col-sm-2 col-form-label text-right"
-                          >Category Name</label
+                          >Select Customer</label
+                        >
+                        <div class="col-sm-10">
+                          <select
+                            class="select2 mb-3"
+                            style="width: 100%"
+                            data-placeholder="Choose"
+                          >
+                            <option value="AK">Available</option>
+                            <option value="HI">Not Available</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label
+                          for="example-text-input"
+                          class="col-sm-2 col-form-label text-right"
+                          >Select Food</label
+                        >
+                        <div class="col-sm-10">
+                          <select
+                            class="select2 mb-3"
+                            style="width: 100%"
+                            data-placeholder="Choose"
+                          >
+                            <option value="AK">Available</option>
+                            <option value="HI">Not Available</option>
+                          </select>
+                        </div>
+                      </div>
+
+    
+                      <div class="form-group row">
+                        <label
+                          for="example-text-input"
+                          class="col-sm-2 col-form-label text-right"
+                          >Quantity</label
                         >
                         <div class="col-sm-10">
                           <input
                             class="form-control"
-                            type="text"
+                            type="number"
                             id=""
                             name="cat_name"
-                            placeholder="Enter category name"
+                            placeholder="Enter number of room"
+                            min="1"
+                            max="10"
                           />
                         </div>
                       </div>
@@ -433,28 +443,30 @@
                         <label
                           for="example-text-input"
                           class="col-sm-2 col-form-label text-right"
-                          >category Image</label
+                          >Payment Type</label
                         >
                         <div class="col-sm-10">
-                          <div class="form-group row">
-                            <div class="col-sm-10">
-                              <input
-                                type="file"
-                                id="input-file-now"
-                                class="dropify"
-                              />
-                            </div>
-                          </div>
+                          <select
+                            class="select2 mb-3"
+                            style="width: 100%"
+                            data-placeholder="Choose"
+                          >
+                            <option value="AK">Available</option>
+                            <option value="HI">Not Available</option>
+                          </select>
                         </div>
                       </div>
+             
                       <div class="form-group row">
                         <div class="col-sm-12">
                           <input
                             class="btn btn-primary w-100"
                             type="submit"
-                            value="Submit"
+                            value="Submit Booking"
                           />
                         </div>
+                      </div>
+    
                       </div>
                     </div>
                   </div>
@@ -479,6 +491,7 @@
     </div>
     <!-- end page-wrapper -->
 
+    <!-- jQuery  -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery-ui.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
@@ -500,39 +513,42 @@
     <script src="plugins/datatables/buttons.print.min.js"></script>
     <script src="plugins/datatables/buttons.colVis.min.js"></script>
     <!-- Responsive examples -->
-    <script src="plugins/datatables/dataTables.responsive.min.js"></script>
-    <script src="plugins/datatables/responsive.bootstrap4.min.js"></script>
-    <script src="assets/pages/jquery.datatable.init.js"></script>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery-ui.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/metismenu.min.js"></script>
+    <script src="assets/js/waves.js"></script>
+    <script src="assets/js/feather.min.js"></script>
+    <script src="assets/js/jquery.slimscroll.min.js"></script>
+
+    <!-- Plugins js -->
+    <script src="plugins/moment/moment.js"></script>
+    <script src="plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="plugins/select2/select2.min.js"></script>
+    <script src="plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+    <script src="plugins/timepicker/bootstrap-material-datetimepicker.js"></script>
+    <script src="plugins/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+    <script src="plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.min.js"></script>
+
+    <script src="assets/pages/jquery.forms-advanced.js"></script>
+
+    <!-- App js -->
+    <script src="assets/js/app.js"></script>
+
+    <!-- jQuery  -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery-ui.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/metismenu.min.js"></script>
+    <script src="assets/js/waves.js"></script>
+    <script src="assets/js/feather.min.js"></script>
+    <script src="assets/js/jquery.slimscroll.min.js"></script>
 
     <script src="plugins/dropify/js/dropify.min.js"></script>
     <script src="assets/pages/jquery.form-upload.init.js"></script>
 
     <!-- App js -->
     <script src="assets/js/app.js"></script>
-
-    <script>
-      $(document).ready(function () {
-        var table = $("#datatable-buttons").DataTable();
-
-        $.ajax({
-          url: "http://localhost:8080/rooms/category/all",
-          method: "get",
-          success: function (data) {
-            $.each(data, function (key, value) {
-              console.log(value);
-              table.row
-                .add([
-                  value.id,
-                  value.catName,
-                  value.catImage,
-                  value.id,
-                  value.id,
-                ])
-                .draw();
-            });
-          },
-        });
-      });
-    </script>
   </body>
 </html>
