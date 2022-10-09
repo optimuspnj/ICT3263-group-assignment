@@ -517,7 +517,11 @@
       $(document).ready(function () {
         var table = $("#datatable-buttons").DataTable();
 
-        $.ajax({
+        function getAllRoomFacilities() {
+          table
+          .clear()
+          .draw();
+          $.ajax({
           url: "http://localhost:8080/rooms/facility/all",
           method: "get",
           success: function (data) {
@@ -528,12 +532,27 @@
                   value.id,
                   value.facName,
                   value.image,
-                  value.id,
+                  `<a href='#' class='btn btn-primary mr-1 text-white' did=${value.id}>Edit</a><button class='btn btn-danger delete' did=${value.id}>Delete</button>`,
                 ])
                 .draw();
             });
           },
         });
+        }
+        getAllRoomFacilities();
+
+        $(document).on("click", ".delete", function () {
+          var id = $(this).attr('did');
+
+          $.ajax({
+          url: `http://localhost:8080/rooms/facility/delete/${id}`,
+          method: "put",
+          success: function (data) {
+            getAllRoomFacilities();
+          },
+        });
+        });
+        
       });
     </script>
   </body>

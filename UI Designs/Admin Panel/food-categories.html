@@ -517,16 +517,38 @@
       $(document).ready(function () {
         var table = $("#datatable-buttons").DataTable();
 
-        $.ajax({
+        function getAllFoodCategories() {
+          table
+          .clear()
+          .draw();
+          $.ajax({
           url: "http://localhost:8080/foods/category/all",
           method: "get",
           success: function (data) {
             $.each(data, function (key, value) {
               console.log(value);
-              table.row.add([value.id, value.fcName, value.id]).draw();
+              table.row.add([value.id, 
+              value.fcName, 
+              `<a href='#' class='btn btn-primary mr-1 text-white' did=${value.id}>Edit</a><button class='btn btn-danger delete' did=${value.id}>Delete</button>`,
+            ]).draw();
             });
           },
         });
+        }
+        getAllFoodCategories();
+
+        $(document).on("click", ".delete", function () {
+          var id = $(this).attr('did');
+
+          $.ajax({
+          url: `http://localhost:8080/foods/category/delete/${id}`,
+          method: "put",
+          success: function (data) {
+            getAllFoodCategories();
+          },
+        });
+        });
+        
       });
     </script>
   </body>

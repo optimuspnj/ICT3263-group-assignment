@@ -433,10 +433,6 @@
         $(document).on("click", ".delete", function () {
           var id = $(this).attr('did');
 
-
-
-
-
           $.ajax({
           url: `http://localhost:8080/bookings/delete/${id}`,
           method: "put",
@@ -445,12 +441,6 @@
           },
         });
         });
-
-
-
-        
-
-
     
 });
 

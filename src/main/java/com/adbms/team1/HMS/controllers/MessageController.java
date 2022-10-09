@@ -26,7 +26,7 @@ public class MessageController {
     public String addMessage(@RequestBody Message messageData) {
         return messageServices.addMessage(messageData);
     }
-
+    @CrossOrigin(origins = "*", maxAge = 3600)
     @DeleteMapping("/delete/{id}")
     public String deleteMessageById(@PathVariable Integer id) {
         return messageServices.deleteMessageById(id);
