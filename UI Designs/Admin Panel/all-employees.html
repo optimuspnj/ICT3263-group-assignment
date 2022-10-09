@@ -399,7 +399,11 @@
       $(document).ready(function () {
         var table = $("#datatable-buttons").DataTable();
 
-        $.ajax({
+        function getAllEmployees() {
+          table
+          .clear()
+          .draw();
+          $.ajax({
           url: "http://localhost:8080/employees/all",
           method: "get",
           success: function (data) {
@@ -413,12 +417,27 @@
                   value.email,
                   value.type,
                   value.profilePic,
-                  value.id,
+                  `<a href='#' class='btn btn-primary mr-1 text-white' did=${value.id}>Edit</a><button class='btn btn-danger delete' did=${value.id}>Delete</button>`,
                 ])
                 .draw();
             });
           },
         });
+        }
+        getAllEmployees();
+
+        $(document).on("click", ".delete", function () {
+          var id = $(this).attr('did');
+
+          $.ajax({
+          url: `http://localhost:8080/employees/delete/${id}`,
+          method: "put",
+          success: function (data) {
+            getAllEmployees();
+          },
+        });
+        });
+        
       });
     </script>
   </body>
