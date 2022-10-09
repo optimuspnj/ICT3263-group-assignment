@@ -11,6 +11,7 @@
       content="Premium Multipurpose Admin & Dashboard Template"
       name="description"
     />
+
     <meta content="" name="author" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
@@ -398,7 +399,11 @@
       $(document).ready(function () {
         var table = $("#datatable-buttons").DataTable();
 
-        $.ajax({
+        function getAllFoods(){
+          table
+          .clear()
+          .draw();
+          $.ajax({
           url: "http://localhost:8080/foods/all",
           method: "get",
           success: function (data) {
@@ -411,12 +416,27 @@
                   value.food_category,
                   value.price,
                   value.image,
-                  value.id,
+                  `<a href='edit-bookings.html' class='btn btn-primary mr-1 text-white' did=${value.id}>Edit</a><button class='btn btn-danger delete' did=${value.id}>Delete</button>`,
                 ])
                 .draw();
             });
           },
         });
+        }
+        getAllFoods();
+
+        $(document).on("click", ".delete", function () {
+          var id = $(this).attr('did');
+
+          $.ajax({
+          url: `http://localhost:8080/foods/delete/${id}`,
+          method: "put",
+          success: function (data) {
+            getAllFoods();
+          },
+        });
+        });
+
       });
     </script>
   </body>
