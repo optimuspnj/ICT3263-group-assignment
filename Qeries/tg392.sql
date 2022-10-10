@@ -7,7 +7,7 @@ DELIMITER $$
 USE `hoteldb`$$
 CREATE PROCEDURE `getAllBookings` ()
 BEGIN
-	SELECT * FROM hoteldb.bookings WHERE hoteldb.bookings.is_deleted = 0;
+	SELECT booking_id,booking_date,arrival_date,departure_date,booking_amount,customers.cus_name FROM hoteldb.bookings LEFT JOIN hoteldb.customers ON hoteldb.bookings.cus_id = hoteldb.customers.cus_id WHERE hoteldb.bookings.is_deleted = 0;
 END$$
 
 DELIMITER ;
@@ -81,3 +81,35 @@ END$$
 
 DELIMITER ;
 
+-- 	GET LIST OF BOOKINGS FOR SPECIFIC DATE RANGE
+
+USE `hoteldb`;
+DROP procedure IF EXISTS `getBookingsByDateRange`;
+
+DELIMITER $$
+USE `hoteldb`$$
+CREATE PROCEDURE `getBookingsByDateRange` ()
+BEGIN
+SELECT * 
+	FROM hoteldb.bookings
+    WHERE booking_date > start_date AND  booking_date < end_date AND is_deleted = 0;
+END$$
+
+DELIMITER ;
+
+-- http://localhost:8080/bookings/bookingRange/2022-10-04_2022-10-30
+
+-- WHEN FOOD CATEGORY IS DELETED RELATED FOOD ITEMS TO DELETE
+
+DELIMITER $$
+
+CREATE TRIGGER deleteFoodOnFoodCatDelete
+    BEFORE UPDATE
+    ON food_category FOR EACH ROW
+BEGIN
+	IF NEW.is_deleted = 1 THEN
+		UPDATE `hoteldb`.`foods` SET `is_deleted` = '1' WHERE (`food_category` = OLD.fc_id);
+    END IF;
+END$$    
+
+DELIMITER ;

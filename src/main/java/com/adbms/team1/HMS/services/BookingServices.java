@@ -2,6 +2,7 @@ package com.adbms.team1.HMS.services;
 
 import com.adbms.team1.HMS.Model.Booking;
 
+import java.util.Date;
 import java.util.List;
 
 public interface BookingServices {
@@ -14,4 +15,6 @@ public interface BookingServices {
     String deleteBookingById(Integer id);
 
     String updateBooking(Integer id, Booking bookingData);
+
+    List<Booking> getBookingRange(String start, String end);
 }
