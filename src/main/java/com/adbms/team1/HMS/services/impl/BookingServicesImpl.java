@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -54,6 +55,11 @@ public class BookingServicesImpl implements BookingServices {
             msg = "Error";
         }
         return msg;
+    }
+
+    @Override
+    public List<Booking> getBookingRange(String start, String end) {
+        return bookingRepository.getBookingRange(start, end);
     }
 
     @Override
