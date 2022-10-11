@@ -2,6 +2,7 @@ package com.adbms.team1.HMS.services.impl;
 
 import com.adbms.team1.HMS.Model.Employee;
 import com.adbms.team1.HMS.repositories.EmployeeRepository;
+import com.adbms.team1.HMS.repositories.Summary;
 import com.adbms.team1.HMS.services.EmployeeServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -71,5 +72,10 @@ public class EmployeeServicesImpl implements EmployeeServices {
     @Override
     public String employeeLogin(String email, String password) {
         return employeeRepository.employeeLogin(email, password);
+    }
+
+    @Override
+    public String getSummary() {
+        return employeeRepository.getSummary();
     }
 }

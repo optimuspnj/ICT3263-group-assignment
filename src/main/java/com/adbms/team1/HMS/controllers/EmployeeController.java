@@ -3,6 +3,7 @@ package com.adbms.team1.HMS.controllers;
 import com.adbms.team1.HMS.Model.Customer;
 import com.adbms.team1.HMS.Model.Employee;
 import com.adbms.team1.HMS.Model.LoginDetails;
+import com.adbms.team1.HMS.repositories.Summary;
 import com.adbms.team1.HMS.services.EmployeeServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -48,4 +49,10 @@ public class EmployeeController {
     public String employeeLogin(@RequestBody LoginDetails loginDetails) {
         return employeeServices.employeeLogin(loginDetails.getEmail(), loginDetails.getPassword());
     }
+
+    @GetMapping("/summary")
+    public String getSummary() {
+        return employeeServices.getSummary();
+    }
+
 }
