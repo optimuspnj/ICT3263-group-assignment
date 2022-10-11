@@ -341,7 +341,6 @@
                         <th>Quantity</th>
                         <th>Max Guests</th>
                         <th>Room category</th>
-                        <th>Room Image</th>
                         <th>Actions</th>
                       </tr>
                     </thead>
@@ -417,8 +416,7 @@
                     value.roomQty,
                     value.maxGuest,
                     "CAT : " + value.roomCategory,
-                    value.roomImage,
-                    `<a href='edit-bookings.html' class='btn btn-primary mr-1 text-white' did=${value.id}>Edit</a><button class='btn btn-danger delete' did=${value.id}>Delete</button>`,
+                    `<a href='edit-room.html?id=${value.id}' class='btn btn-primary mr-1 text-white' did=${value.id}>Edit</a><button class='btn btn-danger delete' did=${value.id}>Delete</button>`,
                   ])
                   .draw();
               });
