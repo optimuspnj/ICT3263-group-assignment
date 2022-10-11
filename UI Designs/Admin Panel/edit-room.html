@@ -126,11 +126,7 @@
               alt="logo-large"
               class="logo-lg logo-light"
             />
-            <img
-              src="assets/images/logo-dark.png"
-              alt="logo-large"
-              class="logo-lg"
-            />
+
           </span>
         </a>
       </div>
@@ -661,7 +657,7 @@
             id:id,
             roomName: room_name,
             roomDescription: description,
-            roomStatus: status,
+            roomStatus: "Available",
             dailyRate: daily_rate,
             roomQty: qty,
             maxGuest: guests,
@@ -670,7 +666,7 @@
           };
 
           $.ajax({
-            url: `http://localhost:8080/rooms/room/update`,
+            url: `http://localhost:8080/rooms/update/${id}`,
             method: "put",
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(data),

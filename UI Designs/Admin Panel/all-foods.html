@@ -71,11 +71,6 @@
               alt="logo-large"
               class="logo-lg logo-light"
             />
-            <img
-              src="assets/images/logo-dark.png"
-              alt="logo-large"
-              class="logo-lg"
-            />
           </span>
         </a>
       </div>
@@ -123,7 +118,7 @@
     <div class="left-sidenav">
       <ul class="metismenu left-sidenav-menu">
         <li>
-          <a href="index.html"
+          <a href="dashboard.html"
             ><i class="ti-bar-chart"></i><span>Dashboard</span></a
           >
         </li>
@@ -341,7 +336,6 @@
                         <th>Food Name</th>
                         <th>Food Category</th>
                         <th>Price</th>
-                        <th>Image</th>
                         <th>Actions</th>
                       </tr>
                     </thead>
@@ -414,7 +408,6 @@
                     value.foodName,
                     "CAT : " + value.food_category,
                     "Rs " + value.price + ".00",
-                    value.image,
                     `<a href='edit-food.html?id=${value.id}' class='btn btn-primary mr-1 text-white' did=${value.id}>Edit</a><button class='btn btn-danger delete' did=${value.id}>Delete</button>`,
                   ])
                   .draw();

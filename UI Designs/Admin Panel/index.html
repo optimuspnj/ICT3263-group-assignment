@@ -152,17 +152,18 @@
         let password = $("#password").val();
 
         var data = {
-          catName: email,
-          catImage: "password",
+          email: email,
+          password: password,
         };
 
         $.ajax({
-          url: `http://localhost:8080/rooms/category/add`,
+          url: `http://localhost:8080/employees/login`,
           method: "post",
           contentType: "application/json; charset=utf-8",
           data: JSON.stringify(data),
           success: function (data) {
-            if (data.id == "test") {
+            console.log(data);
+            if (data != "Login Details Invalid") {
               $(".msg").html(
                 "<div class='alert alert-success' role='alert'>Successfuly Logged in !</div>"
               );
