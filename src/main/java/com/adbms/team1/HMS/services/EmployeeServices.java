@@ -14,4 +14,6 @@ public interface EmployeeServices {
     String updateEmployeeById(Integer id, Employee employeeData);
 
     String addEmployee(Employee employeeData);
+
+    String employeeLogin(String email, String password);
 }

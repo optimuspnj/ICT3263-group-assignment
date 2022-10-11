@@ -67,4 +67,9 @@ public class EmployeeServicesImpl implements EmployeeServices {
         }
         return msg;
     }
+
+    @Override
+    public String employeeLogin(String email, String password) {
+        return employeeRepository.employeeLogin(email, password);
+    }
 }

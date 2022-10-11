@@ -2,6 +2,7 @@ package com.adbms.team1.HMS.controllers;
 
 import com.adbms.team1.HMS.Model.Customer;
 import com.adbms.team1.HMS.Model.Employee;
+import com.adbms.team1.HMS.Model.LoginDetails;
 import com.adbms.team1.HMS.services.EmployeeServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -41,5 +42,10 @@ public class EmployeeController {
     @PostMapping("/add")
     public String addEmployee(@RequestBody Employee employeeData) {
         return employeeServices.addEmployee(employeeData);
+    }
+
+    @PostMapping("/login")
+    public String employeeLogin(@RequestBody LoginDetails loginDetails) {
+        return employeeServices.employeeLogin(loginDetails.getEmail(), loginDetails.getPassword());
     }
 }
