@@ -178,7 +178,7 @@
     <div class="left-sidenav">
       <ul class="metismenu left-sidenav-menu">
         <li>
-          <a href="index.html"
+          <a href="dashboard.html"
             ><i class="ti-bar-chart"></i><span>Dashboard</span></a
           >
         </li>
@@ -375,10 +375,11 @@
             <!--end col-->
           </div>
           <!-- end page title end breadcrumb -->
-
+        <form>
           <div class="row">
             <div class="col-12">
               <div class="card">
+                <div class="msg"></div>
                 <div class="card-body">
                   <div class="row">
                     <div class="col-lg-12">
@@ -396,7 +397,7 @@
                           <input
                             class="form-control"
                             type="text"
-                            id=""
+                            id="emp_name"
                             name="cat_name"
                             placeholder="Enter employee name"
              
@@ -415,7 +416,7 @@
                           <input
                             class="form-control"
                             type="text"
-                            id=""
+                            id="email"
                             name="cat_name"
                             placeholder="Enter employee email"
              
@@ -437,7 +438,7 @@
                           <input
                             class="form-control"
                             type="text"
-                            id=""
+                            id="phone"
                             name="cat_name"
                             placeholder="Enter employee phone number"
              
@@ -456,8 +457,11 @@
                             style="width: 100%"
                             data-placeholder="Choose"
                           >
-                            <option value="AK">Available</option>
-                            <option value="HI">Not Available</option>
+                            <option value="AK">Admin</option>
+                            <option value="HI">Manager</option>
+                            <option value="HI">Receptionist</option>
+                            <option value="HI">Kitchen Head</option>
+                            <option value="HI">Room Supervisor</option>
                           </select>
                         </div>
                       </div>
@@ -471,15 +475,15 @@
                         <div class="col-sm-10">
                           <input
                             class="form-control"
-                            type="text"
-                            id=""
+                            type="password"
+                            id="password"
                             name="cat_name"
                             placeholder="Enter password"
              
                           />
                         </div>
                       </div>
-                      <div class="form-group row">
+                      <div class="form-group row" style="display: none">
                         <label
                           for="example-text-input"
                           class="col-sm-2 col-form-label text-right"
@@ -488,7 +492,7 @@
                         <div class="col-sm-10">
                           <div class="form-group row">
                             <div class="col-sm-10">
-                              <input type="file" id="input-file-now"
+                              <input type="file" id="file"
                               class="dropify" />
                             </div>
                           </div>
@@ -499,7 +503,7 @@
                       <div class="form-group row">
                         <div class="col-sm-12">
                           <input
-                            class="btn btn-primary w-100"
+                            class="btn btn-primary w-100 submit"
                             type="submit"
                             value="Submit Booking"
                           />
@@ -512,6 +516,7 @@
                 </div>
               </div>
             </div>
+          </form>
             <!-- end col -->
           </div>
           <!-- end row -->
@@ -589,5 +594,40 @@
 
     <!-- App js -->
     <script src="assets/js/app.js"></script>
+    <script>
+       $(document).on("click", ".submit", function () {
+          event.preventDefault();
+          jsonObj = [];
+
+          let empName = $("#emp_name").val();
+          let phone = $("#phone").val();
+          let email = $("#email").val();
+          let type = $("#type").val();
+          let password = $("#password").val();
+
+          var data = {
+            empName: empName,
+            phone: phone,
+            email: email,
+            type: "Manager",
+            password: password,
+            profilePic: "img"
+          };
+
+          $.ajax({
+            url: `http://localhost:8080/employees/add`,
+            method: "post",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(data),
+            success: function (data) {
+              $(".msg").html(
+                "<div class='alert alert-success' role='alert'>Successfuly Added!</div>"
+              );
+    
+              $("#cat_name").val("");
+            },
+          });
+        });
+    </script>
   </body>
 </html>

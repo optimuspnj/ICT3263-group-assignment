@@ -140,7 +140,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="room-categories.html"
-                ><i class="ti-control-record"></i>Room Categories</a
+                ><i class="ti-control-record"></i>Room Category</a
               >
             </li>
             <li class="nav-item">
@@ -322,6 +322,8 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
+                  <div class="msg"></div>
+
                   <table
                     id="datatable-buttons"
                     class="table table-striped table-bordered dt-responsive nowrap"
@@ -399,53 +401,46 @@
       $(document).ready(function () {
         var table = $("#datatable-buttons").DataTable();
 
-        function getAllRooms(){
-          table
-          .clear()
-          .draw();
+        function getAllRooms() {
+          table.clear().draw();
           $.ajax({
-          url: "http://localhost:8080/rooms/all",
-          method: "get",
-          success: function (data) {
-            $.each(data, function (key, value) {
-              console.log(value);
-              table.row
-                .add([
-                  value.id,
-                  value.roomName,
-                  value.dailyRate,
-                  value.roomQty,
-                  value.maxGuest,
-                  value.roomCategory,
-                  value.roomImage,
-                  `<a href='edit-bookings.html' class='btn btn-primary mr-1 text-white' did=${value.id}>Edit</a><button class='btn btn-danger delete' did=${value.id}>Delete</button>`,
-                ])
-                .draw();
-            });
-          },
-        });
-
+            url: "http://localhost:8080/rooms/all",
+            method: "get",
+            success: function (data) {
+              $.each(data, function (key, value) {
+                console.log(value);
+                table.row
+                  .add([
+                    "ROOM : " + value.id,
+                    value.roomName,
+                    "Rs " + value.dailyRate + ".00",
+                    value.roomQty,
+                    value.maxGuest,
+                    "CAT : " + value.roomCategory,
+                    value.roomImage,
+                    `<a href='edit-bookings.html' class='btn btn-primary mr-1 text-white' did=${value.id}>Edit</a><button class='btn btn-danger delete' did=${value.id}>Delete</button>`,
+                  ])
+                  .draw();
+              });
+            },
+          });
         }
         getAllRooms();
 
         $(document).on("click", ".delete", function () {
-          var id = $(this).attr('did');
-
-
-
-
+          var id = $(this).attr("did");
 
           $.ajax({
-          url: `http://localhost:8080/rooms/delete/${id}`,
-          method: "put",
-          success: function (data) {
-            getAllRooms();
-          },
+            url: `http://localhost:8080/rooms/delete/${id}`,
+            method: "put",
+            success: function (data) {
+              getAllRooms();
+              $(".msg").html(
+                "<div class='alert alert-success' role='alert'>Successfuly Deleted!</div>"
+              );
+            },
+          });
         });
-        });
-
-
- 
       });
     </script>
   </body>

@@ -122,7 +122,7 @@
     <div class="left-sidenav">
       <ul class="metismenu left-sidenav-menu">
         <li>
-          <a href="index.html"
+          <a href="dashboard.html"
             ><i class="ti-bar-chart"></i><span>Dashboard</span></a
           >
         </li>
@@ -323,6 +323,7 @@
           <div class="row">
             <div class="col-12">
               <div class="card">
+                <div class="msg"></div>
                 <div class="card-body">
                   <table
                     id="datatable-buttons"
@@ -398,52 +399,48 @@
     <script src="assets/js/app.js"></script>
     <script>
       $(document).ready(function () {
-
-        
         var table = $("#datatable-buttons").DataTable();
 
         function getAllBookings() {
-          table
-          .clear()
-          .draw();
+          table.clear().draw();
           $.ajax({
-          url: "http://localhost:8080/bookings/all",
-          method: "get",
-          success: function (data) {
-            $.each(data, function (key, value) {
-              console.log(value);
-              table.row
-                .add([
-                  value.id,
-                  value.bookingDate,
-                  value.arrivalDate,
-                  value.departureDate,
-                  value.cusId,
-                  value.bookingAmount,
-                  `<a href='edit-bookings.html' class='btn btn-primary mr-1 text-white' did=${value.id}>Edit</a><button class='btn btn-danger delete' did=${value.id}>Delete</button>`,
-                ])
-                .draw();
-            });
-          },
-        });
+            url: "http://localhost:8080/bookings/all",
+            method: "get",
+            success: function (data) {
+              $.each(data, function (key, value) {
+                console.log(value);
+                table.row
+                  .add([
+                    "BOOKING : " + value.id,
+                    value.bookingDate,
+                    value.arrivalDate,
+                    value.departureDate,
+                    "CUS : " + value.cusId,
+                    "Rs " + value.bookingAmount + ".00",
+                    `<a href='edit-bookings.html' class='btn btn-primary mr-1 text-white' did=${value.id}>Edit</a><button class='btn btn-danger delete' did=${value.id}>Delete</button>`,
+                  ])
+                  .draw();
+              });
+            },
+          });
         }
         getAllBookings();
-        
 
         $(document).on("click", ".delete", function () {
-          var id = $(this).attr('did');
+          var id = $(this).attr("did");
 
           $.ajax({
-          url: `http://localhost:8080/bookings/delete/${id}`,
-          method: "put",
-          success: function (data) {
-            getAllBookings();
-          },
+            url: `http://localhost:8080/bookings/delete/${id}`,
+            method: "put",
+            success: function (data) {
+              getAllBookings();
+              $(".msg").html(
+                "<div class='alert alert-success' role='alert'>Successfuly Deleted!</div>"
+              );
+            },
+          });
         });
-        });
-    
-});
-
+      });
     </script>
   </body>
 </html>

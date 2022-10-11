@@ -178,7 +178,7 @@
     <div class="left-sidenav">
       <ul class="metismenu left-sidenav-menu">
         <li>
-          <a href="index.html"
+          <a href="dashboard.html"
             ><i class="ti-bar-chart"></i><span>Dashboard</span></a
           >
         </li>
@@ -375,10 +375,11 @@
             <!--end col-->
           </div>
           <!-- end page title end breadcrumb -->
-
+          <form id="form">
           <div class="row">
             <div class="col-12">
               <div class="card">
+                <div class="msg"></div>
                 <div class="card-body">
                   <div class="row">
                     <div class="col-lg-12">
@@ -392,7 +393,7 @@
                           <input
                             class="form-control"
                             type="text"
-                            id=""
+                            id="room_name"
                             name="cat_name"
                             placeholder="Enter room name"
                           />
@@ -406,9 +407,10 @@
                         >
                         <div class="col-sm-10">
                           <textarea
-                            id="textarea"
+                            id="description"
                             class="form-control"
                             maxlength="200"
+                            name="description"
                             rows="3"
                             placeholder="Enter your description limit to 200 characters"
                           ></textarea>
@@ -425,6 +427,7 @@
                             class="select2 mb-3"
                             style="width: 100%"
                             data-placeholder="Choose"
+                            id="status"
                           >
                             <option value="AK">Available</option>
                             <option value="HI">Not Available</option>
@@ -441,7 +444,7 @@
                           <input
                             class="form-control"
                             type="number"
-                            id=""
+                            id="daily_rate"
                             name="cat_name"
                             placeholder="Enter daily rate"
                             min="1"
@@ -459,6 +462,7 @@
                             class="select2 mb-3"
                             style="width: 100%"
                             data-placeholder="Choose"
+                            id="facilities"
                           >
                             <option value="AK">Family</option>
                             <option value="HI">Single</option>
@@ -475,7 +479,7 @@
                           <input
                             class="form-control"
                             type="number"
-                            id=""
+                            id="guests"
                             name="cat_name"
                             placeholder="Enter max guests"
                             min="1"
@@ -493,7 +497,7 @@
                           <input
                             class="form-control"
                             type="number"
-                            id=""
+                            id="qty"
                             name="cat_name"
                             placeholder="Enter room quantity"
                             min="1"
@@ -514,6 +518,7 @@
                             style="width: 100%"
                             multiple="multiple"
                             data-placeholder="Choose"
+                            id="facilities"
                           >
                             <option value="AK">Alaska</option>
                             <option value="HI">Hawaii</option>
@@ -539,7 +544,7 @@
                       <div class="form-group row">
                         <div class="col-sm-12">
                           <input
-                            class="btn btn-primary w-100"
+                            class="btn btn-primary w-100 submit"
                             type="submit"
                             value="Submit"
                           />
@@ -552,6 +557,7 @@
                 </div>
               </div>
             </div>
+          </form>
             <!-- end col -->
           </div>
           <!-- end row -->
@@ -629,5 +635,44 @@
 
     <!-- App js -->
     <script src="assets/js/app.js"></script>
+    <script>
+          $(document).on("click", ".submit", function () {
+          event.preventDefault();
+          jsonObj = [];
+
+          let room_name = $("#room_name").val();
+          let description = $("#description").val();
+          let status = $("#status").val();
+          let daily_rate = $("#daily_rate").val();
+          let category = "1";
+          let guests = $("#guests").val();
+          let qty = $("#qty").val();
+          let facilities = "";
+          let image = "";
+
+          var data = {
+            roomName: room_name,
+            roomDescription: description,
+            roomStatus: status,
+            dailyRate: daily_rate,
+            roomQty: qty,
+            maxGuest: guests,
+            roomImage: image,
+            roomCategory: category
+          };
+
+          $.ajax({
+            url: `http://localhost:8080/rooms/add`,
+            method: "post",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(data),
+            success: function (data) {
+              $(".msg").html(
+                "<div class='alert alert-success' role='alert'>Successfuly Added!</div>"
+              );                    
+            },
+          });
+        });
+    </script>
   </body>
 </html>

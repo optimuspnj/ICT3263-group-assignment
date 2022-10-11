@@ -178,7 +178,7 @@
     <div class="left-sidenav">
       <ul class="metismenu left-sidenav-menu">
         <li>
-          <a href="index.html"
+          <a href="dashboard.html"
             ><i class="ti-bar-chart"></i><span>Dashboard</span></a
           >
         </li>
@@ -376,9 +376,11 @@
           </div>
           <!-- end page title end breadcrumb -->
 
+          <form action="">
           <div class="row">
             <div class="col-12">
               <div class="card">
+                <div class="msg"></div>
                 <div class="card-body">
                   <div class="row">
                     <div class="col-lg-12">
@@ -395,9 +397,10 @@
                             class="select2 mb-3"
                             style="width: 100%"
                             data-placeholder="Choose"
+                            id="customer"
                           >
-                            <option value="AK">Available</option>
-                            <option value="HI">Not Available</option>
+                            <option value="AK">Prabash</option>
+                            <option value="HI">Yohan</option>
                           </select>
                         </div>
                       </div>
@@ -412,9 +415,10 @@
                             class="select2 mb-3"
                             style="width: 100%"
                             data-placeholder="Choose"
+                            id="room"
                           >
-                            <option value="AK">Available</option>
-                            <option value="HI">Not Available</option>
+                            <option value="AK">AC Double Room</option>
+                            <option value="HI">Single AC Room</option>
                           </select>
                         </div>
                       </div>
@@ -430,7 +434,7 @@
                           <input
                             class="form-control"
                             type="number"
-                            id=""
+                            id="qty"
                             name="cat_name"
                             placeholder="Enter number of room"
                             min="1"
@@ -445,7 +449,7 @@
                           >Arival Date</label
                         >
                         <div class="col-sm-10">
-                          <input type="date" class="form-control">
+                          <input type="date" class="form-control" id="arrival">
                         </div>
                       </div>
                       <div class="form-group row">
@@ -455,7 +459,7 @@
                           >Departure Date</label
                         >
                         <div class="col-sm-10">
-                          <input type="date" class="form-control" >
+                          <input type="date" class="form-control" id="departure" >
                         </div>
                       </div>
                       <div class="form-group row">
@@ -469,9 +473,10 @@
                             class="select2 mb-3"
                             style="width: 100%"
                             data-placeholder="Choose"
+                            id="payment"
                           >
-                            <option value="AK">Available</option>
-                            <option value="HI">Not Available</option>
+                            <option value="AK">Cash</option>
+                            <option value="HI">Bank Transfer</option>
                           </select>
                         </div>
                       </div>
@@ -479,9 +484,10 @@
                       <div class="form-group row">
                         <div class="col-sm-12">
                           <input
-                            class="btn btn-primary w-100"
+                            class="btn btn-primary w-100 submit"
                             type="submit"
                             value="Submit Booking"
+                            id="submit"
                           />
                         </div>
                       </div>
@@ -492,6 +498,7 @@
                 </div>
               </div>
             </div>
+          </form>
             <!-- end col -->
           </div>
           <!-- end row -->
@@ -569,5 +576,39 @@
 
     <!-- App js -->
     <script src="assets/js/app.js"></script>
+    <script>
+      $(document).on("click", ".submit", function () {
+        var d = new Date();
+        var strDate = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
+
+      event.preventDefault();
+      jsonObj = [];
+
+      let arrivalDate = $("#arrival").val();
+      let departureDate = $("#departure").val();
+      let bookingAmount = "6000";
+      let cusId = "1";
+
+      var data = {
+        "bookingDate": strDate,
+        "arrivalDate": arrivalDate,
+        "departureDate": departureDate,
+        "bookingAmount": bookingAmount,
+        "cusId": cusId
+      };
+
+      $.ajax({
+        url: `http://localhost:8080/bookings/add`,
+        method: "post",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(data),
+        success: function (data) {
+          $(".msg").html(
+            "<div class='alert alert-success' role='alert'>Successfuly Added!</div>"
+          );                    
+        },
+      });
+    });
+</script>
   </body>
 </html>
