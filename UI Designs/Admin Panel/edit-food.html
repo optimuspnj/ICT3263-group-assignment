@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Room Categories - Royal Grand Hotel</title>
+    <title>Add Room - Royal Grand Hotel</title>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -361,14 +361,14 @@
                 <div class="float-right">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                      <a href="javascript:void(0);">Profile</a>
+                      <a href="javascript:void(0);">Foods</a>
                     </li>
                     <li class="breadcrumb-item">
-                      <a href="javascript:void(0);">Edit profile</a>
+                      <a href="javascript:void(0);">Edit Food</a>
                     </li>
                   </ol>
                 </div>
-                <h4 class="page-title">Edit profile</h4>
+                <h4 class="page-title">Edit Food</h4>
               </div>
               <!--end page-title-box-->
             </div>
@@ -376,90 +376,27 @@
           </div>
           <!-- end page title end breadcrumb -->
 
+          <form>
           <div class="row">
             <div class="col-12">
               <div class="card">
+                <div class="msg"></div>
                 <div class="card-body">
                   <div class="row">
                     <div class="col-lg-12">
-           
-          
-
-    
                       <div class="form-group row">
                         <label
                           for="example-text-input"
                           class="col-sm-2 col-form-label text-right"
-                          >Name</label
+                          >Food Name</label
                         >
                         <div class="col-sm-10">
                           <input
                             class="form-control"
                             type="text"
-                            id=""
-                            name="cat_name"
-                            placeholder="Enter name"
-             
-                          />
-                        </div>
-                      </div>
-
-                         
-                      <div class="form-group row">
-                        <label
-                          for="example-text-input"
-                          class="col-sm-2 col-form-label text-right"
-                          >Email</label
-                        >
-                        <div class="col-sm-10">
-                          <input
-                            class="form-control"
-                            type="text"
-                            id=""
-                            name="cat_name"
-                            placeholder="Enter email"
-             
-                          />
-                        </div>
-                      </div>
-
-                         
-        
-
-                         
-                      <div class="form-group row">
-                        <label
-                          for="example-text-input"
-                          class="col-sm-2 col-form-label text-right"
-                          >Phone Number</label
-                        >
-                        <div class="col-sm-10">
-                          <input
-                            class="form-control"
-                            type="text"
-                            id=""
-                            name="cat_name"
-                            placeholder="Enter phone number"
-             
-                          />
-                        </div>
-                      </div>
-   
-                         
-                      <div class="form-group row">
-                        <label
-                          for="example-text-input"
-                          class="col-sm-2 col-form-label text-right"
-                          >Password</label
-                        >
-                        <div class="col-sm-10">
-                          <input
-                            class="form-control"
-                            type="text"
-                            id=""
-                            name="cat_name"
-                            placeholder="Enter password"
-             
+                            id="food_name"
+                            name="food_name"
+                            placeholder="Enter food name"
                           />
                         </div>
                       </div>
@@ -467,25 +404,77 @@
                         <label
                           for="example-text-input"
                           class="col-sm-2 col-form-label text-right"
-                          >Profile Photo</label
+                          >Food Description</label
+                        >
+                        <div class="col-sm-10">
+                          <textarea
+                            id="description"
+                            class="form-control"
+                            maxlength="200"
+                            rows="3"
+                            placeholder="Enter your description limit to 200 characters"
+                          ></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label
+                          for="example-text-input"
+                          class="col-sm-2 col-form-label text-right"
+                          >Food Category</label
+                        >
+                        <div class="col-sm-10">
+                          <select
+                            class="select2 mb-3"
+                            style="width: 100%"
+                            data-placeholder="Choose"
+                            id="category"
+                          >
+                            <option value="AK">Breakfast</option>
+                            <option value="HI">Lunch</option>
+                            <option value="HI">Dinner</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label
+                          for="example-text-input"
+                          class="col-sm-2 col-form-label text-right"
+                          >Price (Rs)</label
+                        >
+                        <div class="col-sm-10">
+                          <input
+                            class="form-control"
+                            type="number"
+                            id="price"
+                            name="cat_name"
+                            placeholder="Enter price"
+                            min="1"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label
+                          for="example-text-input"
+                          class="col-sm-2 col-form-label text-right"
+                          >Food Image</label
                         >
                         <div class="col-sm-10">
                           <div class="form-group row">
                             <div class="col-sm-10">
-                              <input type="file" id="input-file-now"
+                              <input type="file" id="file"
                               class="dropify" />
                             </div>
                           </div>
                         </div>
      
                       </div>
-             
                       <div class="form-group row">
                         <div class="col-sm-12">
                           <input
-                            class="btn btn-primary w-100"
+                            class="btn btn-primary w-100 submit"
                             type="submit"
-                            value="Submit Booking"
+                            value="Submit"
                           />
                         </div>
                       </div>
@@ -496,6 +485,7 @@
                 </div>
               </div>
             </div>
+          </form>
             <!-- end col -->
           </div>
           <!-- end row -->
@@ -573,42 +563,33 @@
 
     <!-- App js -->
     <script src="assets/js/app.js"></script>
-
-
     <script>
-
-           $.ajax({
-            url: `http://localhost:8080/employees/employee/${id}`,
-            method: "get",
-            success: function (data) {
-   
-            $("#emp_name").val(data[0].empName);
-            $("#email").val(data[0].email);
-            $("#phone").val(data[0].phone);
-            $("#password").val(data[0].password);
-            },
-          });
+      let urlParams = new URLSearchParams(window.location.search);
+      let id = urlParams.get('id');
 
 
 
+      $(document).ready(function () {
+  
+        $(document).on("click", ".submit", function () {
+          event.preventDefault();
+          jsonObj = [];
 
-          let empName = $("#emp_name").val();
-          let phone = $("#phone").val();
-          let email = $("#email").val();
-          let type = $("#type").val();
-          let password = $("#password").val();
+          let food_name = $("#food_name").val();
+          let desc = $("#description").val();
+          let price_val = $("#price").val();
 
           var data = {
             id:id,
-            empName: empName,
-            phone: phone,
-            email: email,
-            password: password,
-            profilePic: "img"
+            foodName: food_name,
+            description: desc,
+            price: price_val,
+            image: "url/rf.png",
+            food_category: 1,
           };
 
           $.ajax({
-            url: `http://localhost:8080/employees/update/${id}`,
+            url: `http://localhost:8080/foods/update/${id}`,
             method: "put",
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(data),
@@ -616,12 +597,24 @@
               $(".msg").html(
                 "<div class='alert alert-success' role='alert'>Successfuly Updated!</div>"
               );
-    
               $("#cat_name").val("");
             },
           });
+        });
+      });
 
 
+      $.ajax({
+            url: `http://localhost:8080/foods/food/${id}`,
+            method: "get",
+            success: function (data) {
+   
+              $("#food_name").val(data[0].foodName);
+              $("#description").val(data[0].description);
+              $("#price").val(data[0].price);
+            },
+          });
     </script>
+    
   </body>
 </html>

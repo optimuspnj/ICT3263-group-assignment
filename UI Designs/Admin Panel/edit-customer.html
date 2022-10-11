@@ -361,14 +361,14 @@
                 <div class="float-right">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                      <a href="javascript:void(0);">Profile</a>
+                      <a href="javascript:void(0);">Customers</a>
                     </li>
                     <li class="breadcrumb-item">
-                      <a href="javascript:void(0);">Edit profile</a>
+                      <a href="javascript:void(0);">Edit Customer</a>
                     </li>
                   </ol>
                 </div>
-                <h4 class="page-title">Edit profile</h4>
+                <h4 class="page-title">Edit Customer</h4>
               </div>
               <!--end page-title-box-->
             </div>
@@ -376,29 +376,28 @@
           </div>
           <!-- end page title end breadcrumb -->
 
+        <form>
           <div class="row">
             <div class="col-12">
               <div class="card">
+                <div class="msg"></div>
                 <div class="card-body">
                   <div class="row">
                     <div class="col-lg-12">
-           
-          
 
-    
                       <div class="form-group row">
                         <label
                           for="example-text-input"
                           class="col-sm-2 col-form-label text-right"
-                          >Name</label
+                          >Customer Name</label
                         >
                         <div class="col-sm-10">
                           <input
                             class="form-control"
                             type="text"
-                            id=""
+                            id="cus_name"
                             name="cat_name"
-                            placeholder="Enter name"
+                            placeholder="Enter customer name"
              
                           />
                         </div>
@@ -415,16 +414,50 @@
                           <input
                             class="form-control"
                             type="text"
-                            id=""
+                            id="email"
                             name="cat_name"
-                            placeholder="Enter email"
+                            placeholder="Enter customer email"
              
                           />
                         </div>
                       </div>
 
                          
-        
+                      <div class="form-group row">
+                        <label
+                          for="example-text-input"
+                          class="col-sm-2 col-form-label text-right"
+                          >Address</label
+                        >
+                        <div class="col-sm-10">
+                          <input
+                            class="form-control"
+                            type="text"
+                            id="address"
+                            name="cat_name"
+                            placeholder="Enter customer address"
+             
+                          />
+                        </div>
+                      </div>
+                         
+                      <div class="form-group row">
+                        <label
+                          for="example-text-input"
+                          class="col-sm-2 col-form-label text-right"
+                          >NIC Number</label
+                        >
+                        <div class="col-sm-10">
+                          <input
+                            class="form-control"
+                            type="text"
+                            id="nic"
+                            name="cat_name"
+                            placeholder="Enter customer NIC number"
+             
+                          />
+                        </div>
+                      </div>
 
                          
                       <div class="form-group row">
@@ -437,14 +470,13 @@
                           <input
                             class="form-control"
                             type="text"
-                            id=""
+                            id="phone"
                             name="cat_name"
-                            placeholder="Enter phone number"
+                            placeholder="Enter customer phone number"
              
                           />
                         </div>
                       </div>
-   
                          
                       <div class="form-group row">
                         <label
@@ -455,24 +487,24 @@
                         <div class="col-sm-10">
                           <input
                             class="form-control"
-                            type="text"
-                            id=""
+                            type="password"
+                            id="password"
                             name="cat_name"
                             placeholder="Enter password"
              
                           />
                         </div>
                       </div>
-                      <div class="form-group row">
+                      <div class="form-group row" style="display: none">
                         <label
                           for="example-text-input"
                           class="col-sm-2 col-form-label text-right"
-                          >Profile Photo</label
+                          >Customer Photo</label
                         >
                         <div class="col-sm-10">
                           <div class="form-group row">
                             <div class="col-sm-10">
-                              <input type="file" id="input-file-now"
+                              <input type="file" id="file"
                               class="dropify" />
                             </div>
                           </div>
@@ -483,7 +515,7 @@
                       <div class="form-group row">
                         <div class="col-sm-12">
                           <input
-                            class="btn btn-primary w-100"
+                            class="btn btn-primary w-100 submit"
                             type="submit"
                             value="Submit Booking"
                           />
@@ -496,6 +528,7 @@
                 </div>
               </div>
             </div>
+        </form>
             <!-- end col -->
           </div>
           <!-- end row -->
@@ -573,17 +606,61 @@
 
     <!-- App js -->
     <script src="assets/js/app.js"></script>
-
-
     <script>
+      $(document).ready(function () {
+        let urlParams = new URLSearchParams(window.location.search);
+        let id = urlParams.get('id');
 
-           $.ajax({
-            url: `http://localhost:8080/employees/employee/${id}`,
+
+        $(document).on("click", ".submit", function () {
+          event.preventDefault();
+          jsonObj = [];
+
+          let cusName = $("#cus_name").val();
+          let email = $("#email").val();
+          let address = $("#address").val();
+          let nic = $("#nic").val();
+          let phone = $("#phone").val();
+          let password = $("#password").val();
+
+          var data = {
+            id:id,
+            cusName: cusName,
+            email: email,
+            address: address,
+            nic: nic,
+            phone: phone,
+            password: password,
+            profilePic: "img",
+          };
+
+          $.ajax({
+            url: `http://localhost:8080/customers/update/${id}`,
+            method: "put",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(data),
+            success: function (data) {
+              $(".msg").html(
+                "<div class='alert alert-success' role='alert'>Successfuly Updated!</div>"
+              );
+              $("#cat_name").val("");
+            },
+          });
+        });
+
+
+
+
+
+        $.ajax({
+            url: `http://localhost:8080/customers/customer/${id}`,
             method: "get",
             success: function (data) {
    
-            $("#emp_name").val(data[0].empName);
+            $("#cus_name").val(data[0].cusName);
             $("#email").val(data[0].email);
+            $("#address").val(data[0].address);
+            $("#nic").val(data[0].nic);
             $("#phone").val(data[0].phone);
             $("#password").val(data[0].password);
             },
@@ -592,36 +669,10 @@
 
 
 
-          let empName = $("#emp_name").val();
-          let phone = $("#phone").val();
-          let email = $("#email").val();
-          let type = $("#type").val();
-          let password = $("#password").val();
-
-          var data = {
-            id:id,
-            empName: empName,
-            phone: phone,
-            email: email,
-            password: password,
-            profilePic: "img"
-          };
-
-          $.ajax({
-            url: `http://localhost:8080/employees/update/${id}`,
-            method: "put",
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify(data),
-            success: function (data) {
-              $(".msg").html(
-                "<div class='alert alert-success' role='alert'>Successfuly Updated!</div>"
-              );
-    
-              $("#cat_name").val("");
-            },
-          });
 
 
+      });
     </script>
+    
   </body>
 </html>

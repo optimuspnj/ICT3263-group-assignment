@@ -361,105 +361,41 @@
                 <div class="float-right">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                      <a href="javascript:void(0);">Profile</a>
+                      <a href="javascript:void(0);">Rooms</a>
                     </li>
                     <li class="breadcrumb-item">
-                      <a href="javascript:void(0);">Edit profile</a>
+                      <a href="javascript:void(0);">Edit Room</a>
                     </li>
                   </ol>
                 </div>
-                <h4 class="page-title">Edit profile</h4>
+                <h4 class="page-title">Edit Room</h4>
               </div>
               <!--end page-title-box-->
             </div>
             <!--end col-->
           </div>
           <!-- end page title end breadcrumb -->
-
+          <form id="form">
           <div class="row">
             <div class="col-12">
               <div class="card">
+                <div class="msg"></div>
                 <div class="card-body">
                   <div class="row">
                     <div class="col-lg-12">
-           
-          
-
-    
                       <div class="form-group row">
                         <label
                           for="example-text-input"
                           class="col-sm-2 col-form-label text-right"
-                          >Name</label
+                          >Room Name</label
                         >
                         <div class="col-sm-10">
                           <input
                             class="form-control"
                             type="text"
-                            id=""
+                            id="room_name"
                             name="cat_name"
-                            placeholder="Enter name"
-             
-                          />
-                        </div>
-                      </div>
-
-                         
-                      <div class="form-group row">
-                        <label
-                          for="example-text-input"
-                          class="col-sm-2 col-form-label text-right"
-                          >Email</label
-                        >
-                        <div class="col-sm-10">
-                          <input
-                            class="form-control"
-                            type="text"
-                            id=""
-                            name="cat_name"
-                            placeholder="Enter email"
-             
-                          />
-                        </div>
-                      </div>
-
-                         
-        
-
-                         
-                      <div class="form-group row">
-                        <label
-                          for="example-text-input"
-                          class="col-sm-2 col-form-label text-right"
-                          >Phone Number</label
-                        >
-                        <div class="col-sm-10">
-                          <input
-                            class="form-control"
-                            type="text"
-                            id=""
-                            name="cat_name"
-                            placeholder="Enter phone number"
-             
-                          />
-                        </div>
-                      </div>
-   
-                         
-                      <div class="form-group row">
-                        <label
-                          for="example-text-input"
-                          class="col-sm-2 col-form-label text-right"
-                          >Password</label
-                        >
-                        <div class="col-sm-10">
-                          <input
-                            class="form-control"
-                            type="text"
-                            id=""
-                            name="cat_name"
-                            placeholder="Enter password"
-             
+                            placeholder="Enter room name"
                           />
                         </div>
                       </div>
@@ -467,7 +403,136 @@
                         <label
                           for="example-text-input"
                           class="col-sm-2 col-form-label text-right"
-                          >Profile Photo</label
+                          >Room Description</label
+                        >
+                        <div class="col-sm-10">
+                          <textarea
+                            id="description"
+                            class="form-control"
+                            maxlength="200"
+                            name="description"
+                            rows="3"
+                            placeholder="Enter your description limit to 200 characters"
+                          ></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label
+                          for="example-text-input"
+                          class="col-sm-2 col-form-label text-right"
+                          >Room Status</label
+                        >
+                        <div class="col-sm-10">
+                          <select
+                            class="select2 mb-3"
+                            style="width: 100%"
+                            data-placeholder="Choose"
+                            id="status"
+                          >
+                            <option value="AK">Available</option>
+                            <option value="HI">Not Available</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label
+                          for="example-text-input"
+                          class="col-sm-2 col-form-label text-right"
+                          >Daily Rate (Rs)</label
+                        >
+                        <div class="col-sm-10">
+                          <input
+                            class="form-control"
+                            type="number"
+                            id="daily_rate"
+                            name="cat_name"
+                            placeholder="Enter daily rate"
+                            min="1"
+                          />
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label
+                          for="example-text-input"
+                          class="col-sm-2 col-form-label text-right"
+                          >Room Category</label
+                        >
+                        <div class="col-sm-10">
+                          <select
+                            class="select2 mb-3"
+                            style="width: 100%"
+                            data-placeholder="Choose"
+                            id="facilities"
+                          >
+                          <option value="AK">Double Bed</option>
+                          <option value="HI">Single Bed</option>
+                          <option value="AK">Double Bed AC</option>
+                          <option value="HI">Single Bed AC</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label
+                          for="example-text-input"
+                          class="col-sm-2 col-form-label text-right"
+                          >Max Guests</label
+                        >
+                        <div class="col-sm-10">
+                          <input
+                            class="form-control"
+                            type="number"
+                            id="guests"
+                            name="cat_name"
+                            placeholder="Enter max guests"
+                            min="1"
+                            max="10"
+                          />
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label
+                          for="example-text-input"
+                          class="col-sm-2 col-form-label text-right"
+                          >Room Quantity</label
+                        >
+                        <div class="col-sm-10">
+                          <input
+                            class="form-control"
+                            type="number"
+                            id="qty"
+                            name="cat_name"
+                            placeholder="Enter room quantity"
+                            min="1"
+                            max="20"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label
+                          for="example-text-input"
+                          class="col-sm-2 col-form-label text-right"
+                          >Facilities</label
+                        >
+                        <div class="col-sm-10">
+                          <select
+                            class="select2 mb-3 select2-multiple"
+                            style="width: 100%"
+                            multiple="multiple"
+                            data-placeholder="Choose"
+                            id="facilities"
+                          >
+                          <option value="AK">AC</option>
+                          <option value="HI">Attached Bathroom</option>
+                          <option value="HI">Mini Fridge</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group row" style="display: none;">
+                        <label
+                          for="example-text-input"
+                          class="col-sm-2 col-form-label text-right"
+                          >Room Image</label
                         >
                         <div class="col-sm-10">
                           <div class="form-group row">
@@ -479,13 +544,12 @@
                         </div>
      
                       </div>
-             
                       <div class="form-group row">
                         <div class="col-sm-12">
                           <input
-                            class="btn btn-primary w-100"
+                            class="btn btn-primary w-100 submit"
                             type="submit"
-                            value="Submit Booking"
+                            value="Submit"
                           />
                         </div>
                       </div>
@@ -496,6 +560,7 @@
                 </div>
               </div>
             </div>
+          </form>
             <!-- end col -->
           </div>
           <!-- end row -->
@@ -573,53 +638,68 @@
 
     <!-- App js -->
     <script src="assets/js/app.js"></script>
-
-
     <script>
+      
+      let urlParams = new URLSearchParams(window.location.search);
+      let id = urlParams.get('id');
+  
+          $(document).on("click", ".submit", function () {
+          event.preventDefault();
+          jsonObj = [];
 
-           $.ajax({
-            url: `http://localhost:8080/employees/employee/${id}`,
-            method: "get",
-            success: function (data) {
-   
-            $("#emp_name").val(data[0].empName);
-            $("#email").val(data[0].email);
-            $("#phone").val(data[0].phone);
-            $("#password").val(data[0].password);
-            },
-          });
-
-
-
-
-          let empName = $("#emp_name").val();
-          let phone = $("#phone").val();
-          let email = $("#email").val();
-          let type = $("#type").val();
-          let password = $("#password").val();
+          let room_name = $("#room_name").val();
+          let description = $("#description").val();
+          let status = $("#status").val();
+          let daily_rate = $("#daily_rate").val();
+          let category = "1";
+          let guests = $("#guests").val();
+          let qty = $("#qty").val();
+          let facilities = "";
+          let image = "";
 
           var data = {
             id:id,
-            empName: empName,
-            phone: phone,
-            email: email,
-            password: password,
-            profilePic: "img"
+            roomName: room_name,
+            roomDescription: description,
+            roomStatus: status,
+            dailyRate: daily_rate,
+            roomQty: qty,
+            maxGuest: guests,
+            roomImage: image,
+            roomCategory: category
           };
 
           $.ajax({
-            url: `http://localhost:8080/employees/update/${id}`,
+            url: `http://localhost:8080/rooms/room/update`,
             method: "put",
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(data),
             success: function (data) {
               $(".msg").html(
                 "<div class='alert alert-success' role='alert'>Successfuly Updated!</div>"
-              );
-    
-              $("#cat_name").val("");
+              );                    
             },
           });
+        });
+
+        
+        $.ajax({
+            url: `http://localhost:8080/rooms/room/${id}`,
+            method: "get",
+            success: function (data) {
+   
+              $("#room_name").val(data[0].roomName);
+              $("#description").val(data[0].roomDescription);
+              $("#status").val(data[0].roomStatus);
+              $("#daily_rate").val(data[0].dailyRate);
+              $("#guests").val(data[0].maxGuest);
+              $("#qty").val(data[0].roomQty);
+           
+            },
+          });
+
+
+
 
 
     </script>

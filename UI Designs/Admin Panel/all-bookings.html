@@ -308,11 +308,11 @@
                       <a href="javascript:void(0);">Rooms</a>
                     </li>
                     <li class="breadcrumb-item">
-                      <a href="javascript:void(0);">All Categories</a>
+                      <a href="javascript:void(0);">All Bookings</a>
                     </li>
                   </ol>
                 </div>
-                <h4 class="page-title">All Categories</h4>
+                <h4 class="page-title">All Bookings</h4>
               </div>
               <!--end page-title-box-->
             </div>
@@ -417,7 +417,7 @@
                     value.departureDate,
                     "CUS : " + value.cusId,
                     "Rs " + value.bookingAmount + ".00",
-                    `<a href='edit-bookings.html' class='btn btn-primary mr-1 text-white' did=${value.id}>Edit</a><button class='btn btn-danger delete' did=${value.id}>Delete</button>`,
+                    `<a href='edit-booking.html?id=${value.id}' class='btn btn-primary mr-1 text-white' did=${value.id}>Edit</a><button class='btn btn-danger delete' did=${value.id}>Delete</button>`,
                   ])
                   .draw();
               });

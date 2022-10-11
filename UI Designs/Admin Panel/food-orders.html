@@ -412,7 +412,7 @@
                     value.date,
                     "CUS : " + value.cus_id,
                     "Rs : " + value.totalPayment + ".00",
-                    `<a href='edit-bookings.html' class='btn btn-primary mr-1 text-white' did=${value.id}>Edit</a><button class='btn btn-danger delete' did=${value.id}>Delete</button>`,
+                    `<a href='edit-food-order.html?id=${value.id}' class='btn btn-primary mr-1 text-white' did=${value.id}>Edit</a><button class='btn btn-danger delete' did=${value.id}>Delete</button>`,
                   ])
                   .draw();
               });
