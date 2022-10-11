@@ -16,4 +16,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
     @Query(value = "select loginValidator(:email, :password)", nativeQuery = true)
     String employeeLogin(String email, String password);
+
+    @Query(value = "CALL hoteldb.getSummaryData();", nativeQuery = true)
+    String getSummary();
 }
