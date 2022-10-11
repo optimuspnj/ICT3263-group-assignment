@@ -79,3 +79,28 @@ END$$
 
 DELIMITER ;
 
+CREATE
+    ALGORITHM = UNDEFINED
+    DEFINER = `root`@`localhost`
+    SQL SECURITY DEFINER
+VIEW `hoteldb`.`foodCategoryTotalSoldPrice` AS
+    SELECT
+        `hoteldb`.`food_category`.`fc_name` AS `Food Category`,
+        SUM(`hoteldb`.`foods`.`price`) AS `Total Price`
+    FROM
+        (`hoteldb`.`foods`
+        JOIN `hoteldb`.`food_category`)
+    WHERE
+        ((`hoteldb`.`foods`.`food_category` = `hoteldb`.`food_category`.`fc_id`)
+            AND (`hoteldb`.`foods`.`is_deleted` = 0))
+    GROUP BY `hoteldb`.`foods`.`food_category`
+
+
+
+    CREATE DEFINER=`webuser`@`%` PROCEDURE `searchMessageByKeyword`(
+    IN keyword VARCHAR(50)
+    )
+    BEGIN
+    SELECT * FROM messages
+    	WHERE title LIKE CONCAT('%', keyword , '%')OR message LIKE CONCAT('%',keyword , '%');
+    END
