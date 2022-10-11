@@ -181,7 +181,7 @@
     <div class="left-sidenav">
       <ul class="metismenu left-sidenav-menu">
         <li>
-          <a href="index.html"
+          <a href="dashboard.html"
             ><i class="ti-bar-chart"></i><span>Dashboard</span></a
           >
         </li>
@@ -382,6 +382,7 @@
           <div class="row">
             <div class="col-12">
               <div class="card">
+                <div class="msg"></div>
                 <div class="card-body">
                   <table
                     id="datatable-buttons"
@@ -410,64 +411,66 @@
           <!-- end row -->
           <!-- end row -->
           <h4 class="page-title">Add Category</h4>
-
-          <div class="row">
-            <div class="col-12">
-              <div class="card">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-lg-12">
-                      <div class="form-group row">
-                        <label
-                          for="example-text-input"
-                          class="col-sm-2 col-form-label text-right"
-                          >Category Name</label
-                        >
-                        <div class="col-sm-10">
-                          <input
-                            class="form-control"
-                            type="text"
-                            id=""
-                            name="cat_name"
-                            placeholder="Enter category name"
-                          />
+          <form id="form">
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="form-group row">
+                          <label
+                            for="example-text-input"
+                            class="col-sm-2 col-form-label text-right"
+                            >Category Name</label
+                          >
+                          <div class="col-sm-10">
+                            <input
+                              class="form-control"
+                              type="text"
+                              id="cat_name"
+                              name="cat_name"
+                              placeholder="Enter category name"
+                            />
+                          </div>
                         </div>
-                      </div>
 
-                      <div class="form-group row">
-                        <label
-                          for="example-text-input"
-                          class="col-sm-2 col-form-label text-right"
-                          >category Image</label
-                        >
-                        <div class="col-sm-10">
-                          <div class="form-group row">
-                            <div class="col-sm-10">
-                              <input
-                                type="file"
-                                id="input-file-now"
-                                class="dropify"
-                              />
+                        <div class="form-group row" style="display: none">
+                          Add Category>
+                          <label
+                            for="example-text-input"
+                            class="col-sm-2 col-form-label text-right"
+                            >category Image</label
+                          >
+                          <div class="col-sm-10">
+                            <div class="form-group row">
+                              <div class="col-sm-10">
+                                <input
+                                  type="file"
+                                  id="input-file-now"
+                                  class="dropify"
+                                />
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="form-group row">
-                        <div class="col-sm-12">
-                          <input
-                            class="btn btn-primary w-100"
-                            type="submit"
-                            value="Submit"
-                          />
+                        <div class="form-group row">
+                          <div class="col-sm-12">
+                            <input
+                              class="btn btn-primary w-100 submit"
+                              type="submit"
+                              value="Submit"
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+              <!-- end col -->
             </div>
-            <!-- end col -->
-          </div>
+          </form>
         </div>
         <!-- container -->
         <footer class="footer text-center text-sm-left">
@@ -518,37 +521,65 @@
         var table = $("#datatable-buttons").DataTable();
 
         function getAllFoodCategories() {
-          table
-          .clear()
-          .draw();
+          table.clear().draw();
           $.ajax({
-          url: "http://localhost:8080/foods/category/all",
-          method: "get",
-          success: function (data) {
-            $.each(data, function (key, value) {
-              console.log(value);
-              table.row.add([value.id, 
-              value.fcName, 
-              `<a href='#' class='btn btn-primary mr-1 text-white' did=${value.id}>Edit</a><button class='btn btn-danger delete' did=${value.id}>Delete</button>`,
-            ]).draw();
-            });
-          },
-        });
+            url: "http://localhost:8080/foods/category/all",
+            method: "get",
+            success: function (data) {
+              $.each(data, function (key, value) {
+                console.log(value);
+                table.row
+                  .add([
+                    "CAT : " + value.id,
+                    value.fcName,
+                    `<button class='btn btn-danger delete' did=${value.id}>Delete</button>`,
+                  ])
+                  .draw();
+              });
+            },
+          });
         }
         getAllFoodCategories();
 
         $(document).on("click", ".delete", function () {
-          var id = $(this).attr('did');
+          var id = $(this).attr("did");
 
           $.ajax({
-          url: `http://localhost:8080/foods/category/delete/${id}`,
-          method: "put",
-          success: function (data) {
-            getAllFoodCategories();
-          },
+            url: `http://localhost:8080/foods/category/delete/${id}`,
+            method: "put",
+            success: function (data) {
+              getAllFoodCategories();
+              $(".msg").html(
+                "<div class='alert alert-success' role='alert'>Successfuly Deleted!</div>"
+              );
+            },
+          });
         });
+
+        $(document).on("click", ".submit", function () {
+          event.preventDefault();
+          jsonObj = [];
+
+          let cat_name = $("#cat_name").val();
+
+          var data = {
+            fcName: cat_name,
+          };
+
+          $.ajax({
+            url: `http://localhost:8080/foods/category/add`,
+            method: "post",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(data),
+            success: function (data) {
+              $(".msg").html(
+                "<div class='alert alert-success' role='alert'>Successfuly Added!</div>"
+              );
+              getAllFoodCategories();
+              $("#cat_name").val("");
+            },
+          });
         });
-        
       });
     </script>
   </body>

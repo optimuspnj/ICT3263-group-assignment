@@ -323,6 +323,7 @@
           <div class="row">
             <div class="col-12">
               <div class="card">
+                <div class="msg"></div>
                 <div class="card-body">
                   <table
                     id="datatable-buttons"
@@ -340,7 +341,6 @@
                         <th>Phone</th>
                         <th>Email</th>
                         <th>Type</th>
-                        <th>Profile Photo</th>
                         <th>Actions</th>
                       </tr>
                     </thead>
@@ -400,44 +400,43 @@
         var table = $("#datatable-buttons").DataTable();
 
         function getAllEmployees() {
-          table
-          .clear()
-          .draw();
+          table.clear().draw();
           $.ajax({
-          url: "http://localhost:8080/employees/all",
-          method: "get",
-          success: function (data) {
-            $.each(data, function (key, value) {
-              console.log(value);
-              table.row
-                .add([
-                  value.id,
-                  value.empName,
-                  value.phone,
-                  value.email,
-                  value.type,
-                  value.profilePic,
-                  `<a href='#' class='btn btn-primary mr-1 text-white' did=${value.id}>Edit</a><button class='btn btn-danger delete' did=${value.id}>Delete</button>`,
-                ])
-                .draw();
-            });
-          },
-        });
+            url: "http://localhost:8080/employees/all",
+            method: "get",
+            success: function (data) {
+              $.each(data, function (key, value) {
+                console.log(value);
+                table.row
+                  .add([
+                    "EMP : " + value.id,
+                    value.empName,
+                    value.phone,
+                    value.email,
+                    value.type,
+                    `<a href='#' class='btn btn-primary mr-1 text-white' did=${value.id}>Edit</a><button class='btn btn-danger delete' did=${value.id}>Delete</button>`,
+                  ])
+                  .draw();
+              });
+            },
+          });
         }
         getAllEmployees();
 
         $(document).on("click", ".delete", function () {
-          var id = $(this).attr('did');
+          var id = $(this).attr("did");
 
           $.ajax({
-          url: `http://localhost:8080/employees/delete/${id}`,
-          method: "put",
-          success: function (data) {
-            getAllEmployees();
-          },
+            url: `http://localhost:8080/employees/delete/${id}`,
+            method: "put",
+            success: function (data) {
+              getAllEmployees();
+              $(".msg").html(
+                "<div class='alert alert-success' role='alert'>Successfuly Deleted!</div>"
+              );
+            },
+          });
         });
-        });
-        
       });
     </script>
   </body>

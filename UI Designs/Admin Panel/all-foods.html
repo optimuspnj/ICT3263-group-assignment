@@ -324,6 +324,7 @@
           <div class="row">
             <div class="col-12">
               <div class="card">
+                <div class="msg"></div>
                 <div class="card-body">
                   <table
                     id="datatable-buttons"
@@ -399,44 +400,44 @@
       $(document).ready(function () {
         var table = $("#datatable-buttons").DataTable();
 
-        function getAllFoods(){
-          table
-          .clear()
-          .draw();
+        function getAllFoods() {
+          table.clear().draw();
           $.ajax({
-          url: "http://localhost:8080/foods/all",
-          method: "get",
-          success: function (data) {
-            $.each(data, function (key, value) {
-              console.log(value);
-              table.row
-                .add([
-                  value.id,
-                  value.foodName,
-                  value.food_category,
-                  value.price,
-                  value.image,
-                  `<a href='edit-bookings.html' class='btn btn-primary mr-1 text-white' did=${value.id}>Edit</a><button class='btn btn-danger delete' did=${value.id}>Delete</button>`,
-                ])
-                .draw();
-            });
-          },
-        });
+            url: "http://localhost:8080/foods/all",
+            method: "get",
+            success: function (data) {
+              $.each(data, function (key, value) {
+                console.log(value);
+                table.row
+                  .add([
+                    "FOOD : " + value.id,
+                    value.foodName,
+                    "CAT : " + value.food_category,
+                    "Rs " + value.price + ".00",
+                    value.image,
+                    `<a href='edit-bookings.html' class='btn btn-primary mr-1 text-white' did=${value.id}>Edit</a><button class='btn btn-danger delete' did=${value.id}>Delete</button>`,
+                  ])
+                  .draw();
+              });
+            },
+          });
         }
         getAllFoods();
 
         $(document).on("click", ".delete", function () {
-          var id = $(this).attr('did');
+          var id = $(this).attr("did");
 
           $.ajax({
-          url: `http://localhost:8080/foods/delete/${id}`,
-          method: "put",
-          success: function (data) {
-            getAllFoods();
-          },
+            url: `http://localhost:8080/foods/delete/${id}`,
+            method: "put",
+            success: function (data) {
+              getAllFoods();
+              $(".msg").html(
+                "<div class='alert alert-success' role='alert'>Successfuly Deleted!</div>"
+              );
+            },
+          });
         });
-        });
-
       });
     </script>
   </body>

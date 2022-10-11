@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Dashboard - Royal Grand Hotel</title>
+    <title>Royal Grand Hotel Admin Panel</title>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -33,420 +33,154 @@
     <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
   </head>
 
-  <body>
-    <!-- Top Bar Start -->
-    <div class="topbar">
-      <!-- LOGO -->
-      <div class="topbar-left">
-        <a href="dashboard/crm-index.html" class="logo">
-          <span>
-            <img
-              src="assets/images/logo-sm.png"
-              alt="logo-small"
-              class="logo-sm"
-            />
-          </span>
-          <span>
-            <img
-              src="assets/images/logo.png"
-              alt="logo-large"
-              class="logo-lg logo-light"
-            />
-            <img
-              src="assets/images/logo-dark.png"
-              alt="logo-large"
-              class="logo-lg"
-            />
-          </span>
-        </a>
-      </div>
-      <!--end logo-->
-      <!-- Navbar -->
-      <nav class="navbar-custom">
-        <ul class="list-unstyled topbar-nav float-right mb-0">
-          <li class="dropdown">
-            <a
-              class="nav-link dropdown-toggle waves-effect waves-light nav-user"
-              data-toggle="dropdown"
-              href="#"
-              role="button"
-              aria-haspopup="false"
-              aria-expanded="false"
-            >
-              <img
-                src="assets/images/users/user-1.png"
-                alt="profile-user"
-                class="rounded-circle"
-              />
-              <span class="ml-1 nav-user-name hidden-sm"
-                >Amelia <i class="mdi mdi-chevron-down"></i>
-              </span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right">
-              <a class="dropdown-item" href="#"
-                ><i class="ti-user text-muted mr-2"></i> Profile Edit</a
-              >
+  <body class="account-body accountbg">
+    <!-- Log In page -->
+    <div class="container">
+      <div class="row vh-100">
+        <div class="col-12 align-self-center">
+          <div class="auth-page">
+            <div class="card auth-card shadow-lg">
+              <div class="card-body">
+                <div class="px-3">
+                  <div class="auth-logo-box">
+                    <a
+                      href="dashboard/analytics-index.html"
+                      class="logo logo-admin"
+                      ><img
+                        src="assets/images/logo-sm.png"
+                        height="55"
+                        alt="logo"
+                        class="auth-logo"
+                    /></a>
+                  </div>
+                  <!--end auth-logo-box-->
 
-              <div class="dropdown-divider mb-0"></div>
-              <a class="dropdown-item" href="#"
-                ><i class="ti-power-off text-muted mr-2"></i> Logout</a
-              >
-            </div>
-          </li>
-        </ul>
-        <!--end topbar-nav-->
-      </nav>
-      <!-- end navbar-->
-    </div>
-    <!-- Top Bar End -->
+                  <div class="text-center auth-logo-text">
+                    <h4 class="mt-0 mb-3 mt-5">
+                      Royal Grand Hotel Admin Panel
+                    </h4>
+                    <p class="text-muted mb-0">
+                      Please enter your login details to sign in.
+                    </p>
+                  </div>
+                  <!--end auth-logo-text-->
 
-    <!-- Left Sidenav -->
-    <div class="left-sidenav">
-      <ul class="metismenu left-sidenav-menu">
-        <li class="mm-active">
-          <a href="index.html"
-            ><i class="ti-bar-chart"></i><span>Dashboard</span></a
-          >
-        </li>
+                  <form
+                    class="form-horizontal auth-form my-4"
+                    action="index.html"
+                  >
+                    <div class="form-group">
+                      <label for="username">Email</label>
+                      <div class="input-group mb-3">
+                        <span class="auth-form-icon">
+                          <i class="dripicons-user"></i>
+                        </span>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="email"
+                          placeholder="Enter email"
+                        />
+                      </div>
+                    </div>
+                    <!--end form-group-->
 
-        <li>
-          <a href="javascript: void(0);"
-            ><i class="ti-calendar"></i><span>Rooms</span
-            ><span class="menu-arrow"
-              ><i class="mdi mdi-chevron-right"></i></span
-          ></a>
-          <ul class="nav-second-level" aria-expanded="false">
-            <li class="nav-item">
-              <a class="nav-link" href="all-rooms.html"
-                ><i class="ti-control-record"></i>All Rooms</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="room-categories.html"
-                ><i class="ti-control-record"></i>Room Categories</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="room-facilities.html"
-                ><i class="ti-control-record"></i>Room Facilities</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="add-room.html"
-                ><i class="ti-control-record"></i>Add New Room</a
-              >
-            </li>
-          </ul>
-        </li>
+                    <div class="form-group">
+                      <label for="userpassword">Password</label>
+                      <div class="input-group mb-3">
+                        <span class="auth-form-icon">
+                          <i class="dripicons-lock"></i>
+                        </span>
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="password"
+                          placeholder="Enter password"
+                        />
+                      </div>
+                      <div class="msg"></div>
+                    </div>
+                    <!--end form-group-->
 
-        <li>
-          <a href="javascript: void(0);"
-            ><i class="ti-bookmark"></i><span>Bookings</span
-            ><span class="menu-arrow"
-              ><i class="mdi mdi-chevron-right"></i></span
-          ></a>
-          <ul class="nav-second-level" aria-expanded="false">
-            <li class="nav-item">
-              <a class="nav-link" href="all-bookings.html"
-                ><i class="ti-control-record"></i>All Bookings</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="add-booking.html"
-                ><i class="ti-control-record"></i>Add Bookings</a
-              >
-            </li>
-          </ul>
-        </li>
-
-        <li>
-          <a href="javascript: void(0);"
-            ><i class="ti-harddrive"></i><span>Foods</span
-            ><span class="menu-arrow"
-              ><i class="mdi mdi-chevron-right"></i></span
-          ></a>
-          <ul class="nav-second-level" aria-expanded="false">
-            <li class="nav-item">
-              <a class="nav-link" href="all-foods.html"
-                ><i class="ti-control-record"></i>All Foods</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="food-categories.html"
-                ><i class="ti-control-record"></i>Food Categories</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="add-foods.html"
-                ><i class="ti-control-record"></i>Add Foods</a
-              >
-            </li>
-          </ul>
-        </li>
-
-        <li>
-          <a href="javascript: void(0);"
-            ><i class="ti-archive"></i><span>Food Orders</span
-            ><span class="menu-arrow"
-              ><i class="mdi mdi-chevron-right"></i></span
-          ></a>
-          <ul class="nav-second-level" aria-expanded="false">
-            <li class="nav-item">
-              <a class="nav-link" href="food-orders.html"
-                ><i class="ti-control-record"></i>All Orders</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="new-order.html"
-                ><i class="ti-control-record"></i>Add Order</a
-              >
-            </li>
-          </ul>
-        </li>
-
-        <li>
-          <a href="javascript: void(0);"
-            ><i class="ti-face-smile"></i><span>Customers</span
-            ><span class="menu-arrow"
-              ><i class="mdi mdi-chevron-right"></i></span
-          ></a>
-          <ul class="nav-second-level" aria-expanded="false">
-            <li class="nav-item">
-              <a class="nav-link" href="all-customers.html"
-                ><i class="ti-control-record"></i>All Customers</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="add-customer.html"
-                ><i class="ti-control-record"></i>Add Customer</a
-              >
-            </li>
-          </ul>
-        </li>
-
-        <li>
-          <a href="javascript: void(0);"
-            ><i class="ti-bag"></i><span>Employees</span
-            ><span class="menu-arrow"
-              ><i class="mdi mdi-chevron-right"></i></span
-          ></a>
-          <ul class="nav-second-level" aria-expanded="false">
-            <li class="nav-item">
-              <a class="nav-link" href="all-employees.html"
-                ><i class="ti-control-record"></i>All Employees</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="add-employee.html"
-                ><i class="ti-control-record"></i>Add Employee</a
-              >
-            </li>
-          </ul>
-        </li>
-
-        <li>
-          <a href="javascript: void(0);"
-            ><i class="ti-email"></i><span>Messages</span
-            ><span class="menu-arrow"
-              ><i class="mdi mdi-chevron-right"></i></span
-          ></a>
-          <ul class="nav-second-level" aria-expanded="false">
-            <li class="nav-item">
-              <a class="nav-link" href="all-messages.html"
-                ><i class="ti-control-record"></i>All Messages</a
-              >
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="javascript: void(0);"
-            ><i class="ti-settings"></i><span>Profile</span
-            ><span class="menu-arrow"
-              ><i class="mdi mdi-chevron-right"></i></span
-          ></a>
-          <ul class="nav-second-level" aria-expanded="false">
-            <li class="nav-item">
-              <a class="nav-link" href="edit-profile.html"
-                ><i class="ti-control-record"></i>Edit Profile</a
-              >
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-    <!-- end left-sidenav-->
-
-    <div class="page-wrapper">
-      <!-- Page Content-->
-      <div class="page-content">
-        <div class="container-fluid">
-          <!-- Page-Title -->
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="page-title-box">
-                <div class="float-right">
-                  <ol class="breadcrumb"></ol>
+                    <div class="form-group mb-0 row">
+                      <div class="col-12 mt-2">
+                        <button
+                          class="btn btn-gradient-primary btn-round btn-block waves-effect waves-light submit"
+                          type="button"
+                        >
+                          Log In <i class="fas fa-sign-in-alt ml-1"></i>
+                        </button>
+                      </div>
+                      <!--end col-->
+                    </div>
+                    <!--end form-group-->
+                  </form>
+                  <!--end form-->
                 </div>
-                <h4 class="page-title">Dashboard</h4>
+                <!--end /div-->
               </div>
-              <!--end page-title-box-->
+              <!--end card-body-->
             </div>
-            <!--end col-->
+            <!--end card-->
           </div>
-          <!-- end page title end breadcrumb -->
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="row">
-                <div class="col-lg-3">
-                  <div class="card dash-data-card text-center">
-                    <div class="card-body">
-                      <div class="icon-info mb-3">
-                        <i class="fas fa-signal bg-soft-success"></i>
-                      </div>
-                      <h3 class="text-dark">18</h3>
-                      <h6 class="font-14 text-dark">Monthly Income</h6>
-                    </div>
-                    <!--end card-body-->
-                  </div>
-                  <!--end card-->
-                </div>
-                <!-- end col-->
-                <div class="col-lg-3">
-                  <div class="card dash-data-card text-center">
-                    <div class="card-body">
-                      <div class="icon-info mb-3">
-                        <i class="fas fa-bed bg-soft-warning"></i>
-                      </div>
-                      <h3 class="text-dark">184</h3>
-                      <h6 class="font-14 text-dark">Total Rooms</h6>
-                    </div>
-                    <!--end card-body-->
-                  </div>
-                  <!--end card-->
-                </div>
-                <!-- end col-->
-                <div class="col-lg-3">
-                  <div class="card dash-data-card text-center">
-                    <div class="card-body">
-                      <div class="icon-info mb-3">
-                        <i class="fa fa-hdd bg-soft-pink"></i>
-                      </div>
-                      <h3 class="text-dark">101</h3>
-                      <h6 class="font-14 text-dark">Total Bookings</h6>
-                    </div>
-                    <!--end card-body-->
-                  </div>
-                  <!--end card-->
-                </div>
-                <!-- end col-->
-
-                <div class="col-lg-3">
-                  <div class="card dash-data-card text-center">
-                    <div class="card-body">
-                      <div class="icon-info mb-3">
-                        <i class="fa fa-tasks bg-soft-primary"></i>
-                      </div>
-                      <h3 class="text-dark">92</h3>
-                      <h6 class="font-14 text-dark">Total Food Orders</h6>
-                    </div>
-
-                    <!--end card-body-->
-                  </div>
-                  <!--end card-->
-                </div>
-
-                <div class="col-lg-3">
-                  <div class="card dash-data-card text-center">
-                    <div class="card-body">
-                      <div class="icon-info mb-3">
-                        <i class="fas fa-tty bg-soft-warning"></i>
-                      </div>
-                      <h3 class="text-dark">92</h3>
-                      <h6 class="font-14 text-dark">Total Food Items</h6>
-                    </div>
-
-                    <!--end card-body-->
-                  </div>
-                  <!--end card-->
-                </div>
-
-                <div class="col-lg-3">
-                  <div class="card dash-data-card text-center">
-                    <div class="card-body">
-                      <div class="icon-info mb-3">
-                        <i class="fas fa-user bg-soft-success"></i>
-                      </div>
-                      <h3 class="text-dark">92</h3>
-                      <h6 class="font-14 text-dark">Total Customers</h6>
-                    </div>
-
-                    <!--end card-body-->
-                  </div>
-                  <!--end card-->
-                </div>
-                <div class="col-lg-3">
-                  <div class="card dash-data-card text-center">
-                    <div class="card-body">
-                      <div class="icon-info mb-3">
-                        <i class="fas fa-users bg-soft-primary"></i>
-                      </div>
-                      <h3 class="text-dark">92</h3>
-                      <h6 class="font-14 text-dark">Total Employees</h6>
-                    </div>
-
-                    <!--end card-body-->
-                  </div>
-                  <!--end card-->
-                </div>
-                <div class="col-lg-3">
-                  <div class="card dash-data-card text-center">
-                    <div class="card-body">
-                      <div class="icon-info mb-3">
-                        <i class="fas fa-envelope bg-soft-danger"></i>
-                      </div>
-                      <h3 class="text-dark">92</h3>
-                      <h6 class="font-14 text-dark">Total Messages</h6>
-                    </div>
-
-                    <!--end card-body-->
-                  </div>
-                  <!--end card-->
-                </div>
-                <!-- end col-->
-              </div>
-              <!--end row-->
-            </div>
-            <!--end col-->
-          </div>
-          <!--end row-->
+          <!--end auth-page-->
         </div>
-        <!-- container -->
-
-        <footer class="footer text-center text-sm-left">
-          &copy; 2022 Royal Grand Hotel
-          <span class="text-muted d-none d-sm-inline-block float-right"
-            >Developed by Group 01</span
-          >
-        </footer>
-        <!--end footer-->
+        <!--end col-->
       </div>
-      <!-- end page content -->
+      <!--end row-->
     </div>
-    <!-- end page-wrapper -->
+    <!--end container-->
+    <!-- End Log In page -->
 
     <!-- jQuery  -->
     <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery-ui.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/metismenu.min.js"></script>
     <script src="assets/js/waves.js"></script>
     <script src="assets/js/feather.min.js"></script>
     <script src="assets/js/jquery.slimscroll.min.js"></script>
-    <script src="assets/js/jquery-ui.min.js"></script>
-
-    <script src="plugins/apexcharts/apexcharts.min.js"></script>
-    <script src="assets/pages/jquery.helpdesk-dashboard.init.js"></script>
 
     <!-- App js -->
     <script src="assets/js/app.js"></script>
+    <script>
+      $(document).on("click", ".submit", function () {
+        event.preventDefault();
+        jsonObj = [];
+
+        let email = $("#email").val();
+        let password = $("#password").val();
+
+        var data = {
+          catName: email,
+          catImage: "password",
+        };
+
+        $.ajax({
+          url: `http://localhost:8080/rooms/category/add`,
+          method: "post",
+          contentType: "application/json; charset=utf-8",
+          data: JSON.stringify(data),
+          success: function (data) {
+            if (data.id == "test") {
+              $(".msg").html(
+                "<div class='alert alert-success' role='alert'>Successfuly Logged in !</div>"
+              );
+              window.setTimeout(function () {
+                window.location.href = "dashboard.html";
+              }, 1000);
+
+              sessionStorage.setItem("logged_emp", "test");
+            } else {
+              $(".msg").html(
+                "<div class='alert alert-danger' role='alert'>Invalid Login Details !</div>"
+              );
+              $("#email").val("");
+              $("#password").val("");
+            }
+          },
+        });
+      });
+    </script>
   </body>
 </html>

@@ -323,6 +323,7 @@
           <div class="row">
             <div class="col-12">
               <div class="card">
+                <div class="msg"></div>
                 <div class="card-body">
                   <table
                     id="datatable-buttons"
@@ -340,7 +341,6 @@
                         <th>Email</th>
                         <th>Address</th>
                         <th>Phone Number</th>
-                        <th>Profile Photo</th>
                         <th>Actions</th>
                       </tr>
                     </thead>
@@ -399,51 +399,44 @@
       $(document).ready(function () {
         var table = $("#datatable-buttons").DataTable();
 
-        function getAllCustomer(){
-          table
-          .clear()
-          .draw();
+        function getAllCustomer() {
+          table.clear().draw();
           $.ajax({
-          url: "http://localhost:8080/customers/all",
-          method: "get",
-          success: function (data) {
-            $.each(data, function (key, value) {
-              console.log(value);
-              table.row
-                .add([
-                  value.id,
-                  value.cusName,
-                  value.email,
-                  value.address,
-                  value.phone,
-                  value.profilePic,
-                  `<a href='edit-bookings.html' class='btn btn-primary mr-1 text-white' did=${value.id}>Edit</a><button class='btn btn-danger delete' did=${value.id}>Delete</button>`,
-                ])
-                .draw();
-            });
-          },
-        });
-
+            url: "http://localhost:8080/customers/all",
+            method: "get",
+            success: function (data) {
+              $.each(data, function (key, value) {
+                console.log(value);
+                table.row
+                  .add([
+                    "CUS : " + value.id,
+                    value.cusName,
+                    value.email,
+                    value.address,
+                    value.phone,
+                    `<a href='edit-bookings.html' class='btn btn-primary mr-1 text-white' did=${value.id}>Edit</a><button class='btn btn-danger delete' did=${value.id}>Delete</button>`,
+                  ])
+                  .draw();
+              });
+            },
+          });
         }
         getAllCustomer();
 
         $(document).on("click", ".delete", function () {
-          var id = $(this).attr('did');
-
-
-
-
+          var id = $(this).attr("did");
 
           $.ajax({
-          url: `http://localhost:8080/customers/delete/${id}`,
-          method: "put",
-          success: function (data) {
-            getAllCustomer();
-          },
+            url: `http://localhost:8080/customers/delete/${id}`,
+            method: "put",
+            success: function (data) {
+              getAllCustomer();
+              $(".msg").html(
+                "<div class='alert alert-success' role='alert'>Successfuly Deleted!</div>"
+              );
+            },
+          });
         });
-        });
-
-    
       });
     </script>
   </body>

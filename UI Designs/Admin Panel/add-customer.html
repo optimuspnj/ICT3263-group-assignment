@@ -178,7 +178,7 @@
     <div class="left-sidenav">
       <ul class="metismenu left-sidenav-menu">
         <li>
-          <a href="index.html"
+          <a href="dashboard.html"
             ><i class="ti-bar-chart"></i><span>Dashboard</span></a
           >
         </li>
@@ -376,16 +376,15 @@
           </div>
           <!-- end page title end breadcrumb -->
 
+        <form>
           <div class="row">
             <div class="col-12">
               <div class="card">
+                <div class="msg"></div>
                 <div class="card-body">
                   <div class="row">
                     <div class="col-lg-12">
-           
-          
 
-    
                       <div class="form-group row">
                         <label
                           for="example-text-input"
@@ -396,7 +395,7 @@
                           <input
                             class="form-control"
                             type="text"
-                            id=""
+                            id="cus_name"
                             name="cat_name"
                             placeholder="Enter customer name"
              
@@ -415,7 +414,7 @@
                           <input
                             class="form-control"
                             type="text"
-                            id=""
+                            id="email"
                             name="cat_name"
                             placeholder="Enter customer email"
              
@@ -434,7 +433,7 @@
                           <input
                             class="form-control"
                             type="text"
-                            id=""
+                            id="address"
                             name="cat_name"
                             placeholder="Enter customer address"
              
@@ -452,7 +451,7 @@
                           <input
                             class="form-control"
                             type="text"
-                            id=""
+                            id="nic"
                             name="cat_name"
                             placeholder="Enter customer NIC number"
              
@@ -471,7 +470,7 @@
                           <input
                             class="form-control"
                             type="text"
-                            id=""
+                            id="phone"
                             name="cat_name"
                             placeholder="Enter customer phone number"
              
@@ -488,15 +487,15 @@
                         <div class="col-sm-10">
                           <input
                             class="form-control"
-                            type="text"
-                            id=""
+                            type="password"
+                            id="password"
                             name="cat_name"
                             placeholder="Enter password"
              
                           />
                         </div>
                       </div>
-                      <div class="form-group row">
+                      <div class="form-group row" style="display: none">
                         <label
                           for="example-text-input"
                           class="col-sm-2 col-form-label text-right"
@@ -505,7 +504,7 @@
                         <div class="col-sm-10">
                           <div class="form-group row">
                             <div class="col-sm-10">
-                              <input type="file" id="input-file-now"
+                              <input type="file" id="file"
                               class="dropify" />
                             </div>
                           </div>
@@ -516,7 +515,7 @@
                       <div class="form-group row">
                         <div class="col-sm-12">
                           <input
-                            class="btn btn-primary w-100"
+                            class="btn btn-primary w-100 submit"
                             type="submit"
                             value="Submit Booking"
                           />
@@ -529,6 +528,7 @@
                 </div>
               </div>
             </div>
+        </form>
             <!-- end col -->
           </div>
           <!-- end row -->
@@ -606,5 +606,45 @@
 
     <!-- App js -->
     <script src="assets/js/app.js"></script>
+    <script>
+      $(document).ready(function () {
+  
+        $(document).on("click", ".submit", function () {
+          event.preventDefault();
+          jsonObj = [];
+
+          let cusName = $("#cus_name").val();
+          let email = $("#email").val();
+          let address = $("#address").val();
+          let nic = $("#nic").val();
+          let phone = $("#phone").val();
+          let password = $("#password").val();
+
+          var data = {
+            cusName: cusName,
+            email: email,
+            address: address,
+            nic: nic,
+            phone: phone,
+            password: password,
+            profilePic: "img",
+          };
+
+          $.ajax({
+            url: `http://localhost:8080/customers/add`,
+            method: "post",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(data),
+            success: function (data) {
+              $(".msg").html(
+                "<div class='alert alert-success' role='alert'>Successfuly Added!</div>"
+              );
+              $("#cat_name").val("");
+            },
+          });
+        });
+      });
+    </script>
+    
   </body>
 </html>
